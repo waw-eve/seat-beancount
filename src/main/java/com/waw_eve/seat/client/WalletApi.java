@@ -27,7 +27,6 @@ import com.waw_eve.seat.client.invoker.Configuration;
 import com.waw_eve.seat.client.invoker.Pair;
 import com.waw_eve.seat.client.invoker.ProgressRequestBody;
 import com.waw_eve.seat.client.invoker.ProgressResponseBody;
-import com.waw_eve.seat.client.model.InlineResponse20017;
 import com.waw_eve.seat.client.model.InlineResponse20026;
 
 public class WalletApi {
@@ -49,109 +48,6 @@ public class WalletApi {
 		this.apiClient = apiClient;
 	}
 
-	/**
-	 * Build call for seatApiHttpControllersApiv2CharacterControllerGetWalletJournal
-	 * 
-	 * @param characterId             Character id (required)
-	 * @param page                    Page number
-	 * @param progressListener        Progress listener
-	 * @param progressRequestListener Progress request listener
-	 * @return Call to execute
-	 * @throws ApiException If fail to serialize the request body object
-	 */
-	public com.squareup.okhttp.Call seatApiHttpControllersApiv2CharacterControllerGetWalletJournalCall(
-			Integer characterId, Integer page, final ProgressResponseBody.ProgressListener progressListener,
-			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-		Object localVarPostBody = null;
-
-		// create path and map variables
-		String localVarPath = "/v2/character/wallet-journal/" + apiClient.escapeString(characterId.toString());
-
-		List<Pair> localVarQueryParams = new ArrayList<>();
-		List<Pair> localVarCollectionQueryParams = new ArrayList<>();
-
-		Map<String, String> localVarHeaderParams = new HashMap<>();
-
-		Map<String, Object> localVarFormParams = new HashMap<>();
-
-		localVarQueryParams.add(new Pair("page", page.toString()));
-
-		final String[] localVarAccepts = { "application/json" };
-		final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-		if (localVarAccept != null)
-			localVarHeaderParams.put("Accept", localVarAccept);
-
-		final String[] localVarContentTypes = {
-
-		};
-		final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-		localVarHeaderParams.put("Content-Type", localVarContentType);
-
-		if (progressListener != null) {
-			apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-				@Override
-				public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
-						throws IOException {
-					com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-					return originalResponse.newBuilder()
-							.body(new ProgressResponseBody(originalResponse.body(), progressListener)).build();
-				}
-			});
-		}
-
-		String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-		return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams,
-				localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-	}
-
-	@SuppressWarnings("rawtypes")
-	private com.squareup.okhttp.Call seatApiHttpControllersApiv2CharacterControllerGetWalletJournalValidateBeforeCall(
-			Integer characterId, Integer page, final ProgressResponseBody.ProgressListener progressListener,
-			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-		// verify the required parameter 'characterId' is set
-		if (characterId == null) {
-			throw new ApiException(
-					"Missing the required parameter 'characterId' when calling seatApiHttpControllersApiv2CharacterControllerGetWalletJournal(Async)");
-		}
-
-		return seatApiHttpControllersApiv2CharacterControllerGetWalletJournalCall(characterId, page, progressListener,
-				progressRequestListener);
-
-	}
-
-	/**
-	 * Get a paginated wallet journal for a character Returns a wallet journal
-	 * 
-	 * @param characterId Character id (required)
-	 * @param page        Page number
-	 * @return InlineResponse20017
-	 * @throws ApiException If fail to call the API, e.g. server error or cannot
-	 *                      deserialize the response body
-	 */
-	public InlineResponse20017 seatApiHttpControllersApiv2CharacterControllerGetWalletJournal(Integer characterId,
-			Integer page) throws ApiException {
-		ApiResponse<InlineResponse20017> resp = seatApiHttpControllersApiv2CharacterControllerGetWalletJournalWithHttpInfo(
-				characterId, page);
-		return resp.getData();
-	}
-
-	/**
-	 * Get a paginated wallet journal for a character Returns a wallet journal
-	 * 
-	 * @param characterId Character id (required)
-	 * @param page        Page number
-	 * @return ApiResponse&lt;InlineResponse20017&gt;
-	 * @throws ApiException If fail to call the API, e.g. server error or cannot
-	 *                      deserialize the response body
-	 */
-	public ApiResponse<InlineResponse20017> seatApiHttpControllersApiv2CharacterControllerGetWalletJournalWithHttpInfo(
-			Integer characterId, Integer page) throws ApiException {
-		com.squareup.okhttp.Call call = seatApiHttpControllersApiv2CharacterControllerGetWalletJournalValidateBeforeCall(
-				characterId, page, null, null);
-		Type localVarReturnType = new TypeToken<InlineResponse20017>() {
-		}.getType();
-		return apiClient.execute(call, localVarReturnType);
-	}
 
 	/**
 	 * Build call for

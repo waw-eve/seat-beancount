@@ -32,22 +32,6 @@ public class WalletApiTest {
 	private final WalletApi api = new WalletApi();
 
 	/**
-	 * Get a paginated wallet journal for a character
-	 *
-	 * Returns a wallet journal
-	 *
-	 * @throws ApiException if the Api call fails
-	 */
-	@Test
-	public void seatApiHttpControllersApiv2CharacterControllerGetWalletJournalTest() throws ApiException {
-		Integer characterId = null;
-		InlineResponse20017 response = api.seatApiHttpControllersApiv2CharacterControllerGetWalletJournal(characterId,
-				1);
-
-		// TODO: test validations
-	}
-
-	/**
 	 * Get a paginated wallet journal for a corporation
 	 *
 	 * Returns a wallet journal

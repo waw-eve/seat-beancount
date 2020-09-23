@@ -1,6 +1,6 @@
 package com.waw_eve.seat.beancount;
 
-import java.util.List;
+import java.util.Map;
 
 import lombok.Data;
 
@@ -23,14 +23,15 @@ public class Config {
 	private String token;
 
 	/**
-	 * List of corporation IDs that need to export WalletJournal
+	 * Map of corporation IDs that need to export WalletJournal<br>
+	 * key=AccountName,value=corporationId<br>
+	 * The account name looks like
+	 * <code>Assets:[corporation name]</code><br>
+	 * It will generate 7 accounts for each corporation<br>
+	 * The generated account name will be like
+	 * <code>Assets:[corporation name]:[1-7]</code>
 	 */
-	private List<Integer> corporationIdList;
-
-	/**
-	 * List of character IDs that need to export WalletJournal
-	 */
-	private List<Integer> characterIdList;
+	private Map<String, Integer> corporationIdMap;
 
 	/**
 	 * Target location of the generated result

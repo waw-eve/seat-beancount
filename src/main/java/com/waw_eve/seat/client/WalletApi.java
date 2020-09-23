@@ -12,7 +12,14 @@
 
 package com.waw_eve.seat.client;
 
-import com.waw_eve.seat.client.invoker.ApiCallback;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.google.gson.reflect.TypeToken;
 import com.waw_eve.seat.client.invoker.ApiClient;
 import com.waw_eve.seat.client.invoker.ApiException;
 import com.waw_eve.seat.client.invoker.ApiResponse;
@@ -20,290 +27,234 @@ import com.waw_eve.seat.client.invoker.Configuration;
 import com.waw_eve.seat.client.invoker.Pair;
 import com.waw_eve.seat.client.invoker.ProgressRequestBody;
 import com.waw_eve.seat.client.invoker.ProgressResponseBody;
-
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-
-
 import com.waw_eve.seat.client.model.InlineResponse20017;
 import com.waw_eve.seat.client.model.InlineResponse20026;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class WalletApi {
-    private ApiClient apiClient;
+	private ApiClient apiClient;
 
-    public WalletApi() {
-        this(Configuration.getDefaultApiClient());
-    }
+	public WalletApi() {
+		this(Configuration.getDefaultApiClient());
+	}
 
-    public WalletApi(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
+	public WalletApi(ApiClient apiClient) {
+		this.apiClient = apiClient;
+	}
 
-    public ApiClient getApiClient() {
-        return apiClient;
-    }
+	public ApiClient getApiClient() {
+		return apiClient;
+	}
 
-    public void setApiClient(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
+	public void setApiClient(ApiClient apiClient) {
+		this.apiClient = apiClient;
+	}
 
-    /**
-     * Build call for seatApiHttpControllersApiv2CharacterControllerGetWalletJournal
-     * @param characterId Character id (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call seatApiHttpControllersApiv2CharacterControllerGetWalletJournalCall(Integer characterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-        
-        // create path and map variables
-        String localVarPath = "/v2/character/wallet-journal/{character_id}"
-            .replaceAll("\\{" + "character_id" + "\\}", apiClient.escapeString(characterId.toString()));
+	/**
+	 * Build call for seatApiHttpControllersApiv2CharacterControllerGetWalletJournal
+	 * 
+	 * @param characterId             Character id (required)
+	 * @param page                    Page number
+	 * @param progressListener        Progress listener
+	 * @param progressRequestListener Progress request listener
+	 * @return Call to execute
+	 * @throws ApiException If fail to serialize the request body object
+	 */
+	public com.squareup.okhttp.Call seatApiHttpControllersApiv2CharacterControllerGetWalletJournalCall(
+			Integer characterId, Integer page, final ProgressResponseBody.ProgressListener progressListener,
+			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+		Object localVarPostBody = null;
 
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+		// create path and map variables
+		String localVarPath = "/v2/character/wallet-journal/" + apiClient.escapeString(characterId.toString());
 
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+		List<Pair> localVarQueryParams = new ArrayList<>();
+		List<Pair> localVarCollectionQueryParams = new ArrayList<>();
 
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+		Map<String, String> localVarHeaderParams = new HashMap<>();
 
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+		Map<String, Object> localVarFormParams = new HashMap<>();
 
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+		localVarQueryParams.add(new Pair("page", page.toString()));
 
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
+		final String[] localVarAccepts = { "application/json" };
+		final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+		if (localVarAccept != null)
+			localVarHeaderParams.put("Accept", localVarAccept);
 
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-    
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call seatApiHttpControllersApiv2CharacterControllerGetWalletJournalValidateBeforeCall(Integer characterId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        // verify the required parameter 'characterId' is set
-        if (characterId == null) {
-            throw new ApiException("Missing the required parameter 'characterId' when calling seatApiHttpControllersApiv2CharacterControllerGetWalletJournal(Async)");
-        }
-        
-        com.squareup.okhttp.Call call = seatApiHttpControllersApiv2CharacterControllerGetWalletJournalCall(characterId, progressListener, progressRequestListener);
-        return call;
+		final String[] localVarContentTypes = {
 
-        
-        
-        
-        
-    }
+		};
+		final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		localVarHeaderParams.put("Content-Type", localVarContentType);
 
-    /**
-     * Get a paginated wallet journal for a character
-     * Returns a wallet journal
-     * @param characterId Character id (required)
-     * @return InlineResponse20017
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public InlineResponse20017 seatApiHttpControllersApiv2CharacterControllerGetWalletJournal(Integer characterId) throws ApiException {
-        ApiResponse<InlineResponse20017> resp = seatApiHttpControllersApiv2CharacterControllerGetWalletJournalWithHttpInfo(characterId);
-        return resp.getData();
-    }
+		if (progressListener != null) {
+			apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+				@Override
+				public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+						throws IOException {
+					com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+					return originalResponse.newBuilder()
+							.body(new ProgressResponseBody(originalResponse.body(), progressListener)).build();
+				}
+			});
+		}
 
-    /**
-     * Get a paginated wallet journal for a character
-     * Returns a wallet journal
-     * @param characterId Character id (required)
-     * @return ApiResponse&lt;InlineResponse20017&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<InlineResponse20017> seatApiHttpControllersApiv2CharacterControllerGetWalletJournalWithHttpInfo(Integer characterId) throws ApiException {
-        com.squareup.okhttp.Call call = seatApiHttpControllersApiv2CharacterControllerGetWalletJournalValidateBeforeCall(characterId, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20017>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
+		String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
+		return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams,
+				localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+	}
 
-    /**
-     * Get a paginated wallet journal for a character (asynchronously)
-     * Returns a wallet journal
-     * @param characterId Character id (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call seatApiHttpControllersApiv2CharacterControllerGetWalletJournalAsync(Integer characterId, final ApiCallback<InlineResponse20017> callback) throws ApiException {
+	@SuppressWarnings("rawtypes")
+	private com.squareup.okhttp.Call seatApiHttpControllersApiv2CharacterControllerGetWalletJournalValidateBeforeCall(
+			Integer characterId, Integer page, final ProgressResponseBody.ProgressListener progressListener,
+			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+		// verify the required parameter 'characterId' is set
+		if (characterId == null) {
+			throw new ApiException(
+					"Missing the required parameter 'characterId' when calling seatApiHttpControllersApiv2CharacterControllerGetWalletJournal(Async)");
+		}
 
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+		return seatApiHttpControllersApiv2CharacterControllerGetWalletJournalCall(characterId, page, progressListener,
+				progressRequestListener);
 
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
+	}
 
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
+	/**
+	 * Get a paginated wallet journal for a character Returns a wallet journal
+	 * 
+	 * @param characterId Character id (required)
+	 * @param page        Page number
+	 * @return InlineResponse20017
+	 * @throws ApiException If fail to call the API, e.g. server error or cannot
+	 *                      deserialize the response body
+	 */
+	public InlineResponse20017 seatApiHttpControllersApiv2CharacterControllerGetWalletJournal(Integer characterId,
+			Integer page) throws ApiException {
+		ApiResponse<InlineResponse20017> resp = seatApiHttpControllersApiv2CharacterControllerGetWalletJournalWithHttpInfo(
+				characterId, page);
+		return resp.getData();
+	}
 
-        com.squareup.okhttp.Call call = seatApiHttpControllersApiv2CharacterControllerGetWalletJournalValidateBeforeCall(characterId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20017>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
+	/**
+	 * Get a paginated wallet journal for a character Returns a wallet journal
+	 * 
+	 * @param characterId Character id (required)
+	 * @param page        Page number
+	 * @return ApiResponse&lt;InlineResponse20017&gt;
+	 * @throws ApiException If fail to call the API, e.g. server error or cannot
+	 *                      deserialize the response body
+	 */
+	public ApiResponse<InlineResponse20017> seatApiHttpControllersApiv2CharacterControllerGetWalletJournalWithHttpInfo(
+			Integer characterId, Integer page) throws ApiException {
+		com.squareup.okhttp.Call call = seatApiHttpControllersApiv2CharacterControllerGetWalletJournalValidateBeforeCall(
+				characterId, page, null, null);
+		Type localVarReturnType = new TypeToken<InlineResponse20017>() {
+		}.getType();
+		return apiClient.execute(call, localVarReturnType);
+	}
 
-    /**
-     * Build call for seatApiHttpControllersApiv2CorporationControllerGetWalletJournal
-     * @param corporationId Corporation id (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call seatApiHttpControllersApiv2CorporationControllerGetWalletJournalCall(Integer corporationId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-        
-        // create path and map variables
-        String localVarPath = "/v2/corporation/wallet-journal/{corporation_id}"
-            .replaceAll("\\{" + "corporation_id" + "\\}", apiClient.escapeString(corporationId.toString()));
+	/**
+	 * Build call for
+	 * seatApiHttpControllersApiv2CorporationControllerGetWalletJournal
+	 * 
+	 * @param corporationId           Corporation id (required)
+	 * @param progressListener        Progress listener
+	 * @param progressRequestListener Progress request listener
+	 * @return Call to execute
+	 * @throws ApiException If fail to serialize the request body object
+	 */
+	public com.squareup.okhttp.Call seatApiHttpControllersApiv2CorporationControllerGetWalletJournalCall(
+			Integer corporationId, Integer page, final ProgressResponseBody.ProgressListener progressListener,
+			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+		Object localVarPostBody = null;
 
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+		// create path and map variables
+		String localVarPath = "/v2/corporation/wallet-journal/" + apiClient.escapeString(corporationId.toString());
 
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+		List<Pair> localVarQueryParams = new ArrayList<>();
+		List<Pair> localVarCollectionQueryParams = new ArrayList<>();
 
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+		Map<String, String> localVarHeaderParams = new HashMap<>();
 
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+		Map<String, Object> localVarFormParams = new HashMap<>();
 
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+		localVarQueryParams.add(new Pair("page", page.toString()));
 
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
+		final String[] localVarAccepts = { "application/json" };
+		final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+		if (localVarAccept != null)
+			localVarHeaderParams.put("Accept", localVarAccept);
 
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-    
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call seatApiHttpControllersApiv2CorporationControllerGetWalletJournalValidateBeforeCall(Integer corporationId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        // verify the required parameter 'corporationId' is set
-        if (corporationId == null) {
-            throw new ApiException("Missing the required parameter 'corporationId' when calling seatApiHttpControllersApiv2CorporationControllerGetWalletJournal(Async)");
-        }
-        
-        com.squareup.okhttp.Call call = seatApiHttpControllersApiv2CorporationControllerGetWalletJournalCall(corporationId, progressListener, progressRequestListener);
-        return call;
+		final String[] localVarContentTypes = {
 
-        
-        
-        
-        
-    }
+		};
+		final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		localVarHeaderParams.put("Content-Type", localVarContentType);
 
-    /**
-     * Get a paginated wallet journal for a corporation
-     * Returns a wallet journal
-     * @param corporationId Corporation id (required)
-     * @return InlineResponse20026
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public InlineResponse20026 seatApiHttpControllersApiv2CorporationControllerGetWalletJournal(Integer corporationId) throws ApiException {
-        ApiResponse<InlineResponse20026> resp = seatApiHttpControllersApiv2CorporationControllerGetWalletJournalWithHttpInfo(corporationId);
-        return resp.getData();
-    }
+		if (progressListener != null) {
+			apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+				@Override
+				public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+						throws IOException {
+					com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+					return originalResponse.newBuilder()
+							.body(new ProgressResponseBody(originalResponse.body(), progressListener)).build();
+				}
+			});
+		}
 
-    /**
-     * Get a paginated wallet journal for a corporation
-     * Returns a wallet journal
-     * @param corporationId Corporation id (required)
-     * @return ApiResponse&lt;InlineResponse20026&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<InlineResponse20026> seatApiHttpControllersApiv2CorporationControllerGetWalletJournalWithHttpInfo(Integer corporationId) throws ApiException {
-        com.squareup.okhttp.Call call = seatApiHttpControllersApiv2CorporationControllerGetWalletJournalValidateBeforeCall(corporationId, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20026>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
+		String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
+		return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams,
+				localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+	}
 
-    /**
-     * Get a paginated wallet journal for a corporation (asynchronously)
-     * Returns a wallet journal
-     * @param corporationId Corporation id (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call seatApiHttpControllersApiv2CorporationControllerGetWalletJournalAsync(Integer corporationId, final ApiCallback<InlineResponse20026> callback) throws ApiException {
+	@SuppressWarnings("rawtypes")
+	private com.squareup.okhttp.Call seatApiHttpControllersApiv2CorporationControllerGetWalletJournalValidateBeforeCall(
+			Integer corporationId, Integer page, final ProgressResponseBody.ProgressListener progressListener,
+			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+		// verify the required parameter 'corporationId' is set
+		if (corporationId == null) {
+			throw new ApiException(
+					"Missing the required parameter 'corporationId' when calling seatApiHttpControllersApiv2CorporationControllerGetWalletJournal(Async)");
+		}
 
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+		return seatApiHttpControllersApiv2CorporationControllerGetWalletJournalCall(corporationId, page,
+				progressListener, progressRequestListener);
 
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
+	}
 
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
+	/**
+	 * Get a paginated wallet journal for a corporation Returns a wallet journal
+	 * 
+	 * @param corporationId Corporation id (required)
+	 * @param page          Page number
+	 * @return InlineResponse20026
+	 * @throws ApiException If fail to call the API, e.g. server error or cannot
+	 *                      deserialize the response body
+	 */
+	public InlineResponse20026 seatApiHttpControllersApiv2CorporationControllerGetWalletJournal(Integer corporationId,
+			Integer page) throws ApiException {
+		ApiResponse<InlineResponse20026> resp = seatApiHttpControllersApiv2CorporationControllerGetWalletJournalWithHttpInfo(
+				corporationId, page);
+		return resp.getData();
+	}
 
-        com.squareup.okhttp.Call call = seatApiHttpControllersApiv2CorporationControllerGetWalletJournalValidateBeforeCall(corporationId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20026>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    
+	/**
+	 * Get a paginated wallet journal for a corporation Returns a wallet journal
+	 * 
+	 * @param corporationId Corporation id (required)
+	 * @param page          Page number
+	 * @return ApiResponse&lt;InlineResponse20026&gt;
+	 * @throws ApiException If fail to call the API, e.g. server error or cannot
+	 *                      deserialize the response body
+	 */
+	public ApiResponse<InlineResponse20026> seatApiHttpControllersApiv2CorporationControllerGetWalletJournalWithHttpInfo(
+			Integer corporationId, Integer page) throws ApiException {
+		com.squareup.okhttp.Call call = seatApiHttpControllersApiv2CorporationControllerGetWalletJournalValidateBeforeCall(
+				corporationId, page, null, null);
+		Type localVarReturnType = new TypeToken<InlineResponse20026>() {
+		}.getType();
+		return apiClient.execute(call, localVarReturnType);
+	}
+
 }

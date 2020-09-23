@@ -12,185 +12,181 @@
 
 package com.waw_eve.seat.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import com.waw_eve.seat.client.model.SquadResource;
-import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.google.gson.annotations.SerializedName;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  * Detailed Squad
  */
 @Schema(description = "Detailed Squad")
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-09-23T11:22:13.900688700+08:00[Asia/Shanghai]")
 public class Squad extends SquadResource {
-  @SerializedName("roles")
-  private List<Integer> roles = null;
+	@SerializedName("roles")
+	private List<Integer> roles = null;
 
-  @SerializedName("moderators")
-  private List<Integer> moderators = null;
+	@SerializedName("moderators")
+	private List<Integer> moderators = null;
 
-  @SerializedName("members")
-  private List<Integer> members = null;
+	@SerializedName("members")
+	private List<Integer> members = null;
 
-  @SerializedName("applications")
-  private List<Integer> applications = null;
+	@SerializedName("applications")
+	private List<Integer> applications = null;
 
-  public Squad roles(List<Integer> roles) {
-    this.roles = roles;
-    return this;
-  }
+	public Squad roles(List<Integer> roles) {
+		this.roles = roles;
+		return this;
+	}
 
-  public Squad addRolesItem(Integer rolesItem) {
-    if (this.roles == null) {
-      this.roles = new ArrayList<Integer>();
-    }
-    this.roles.add(rolesItem);
-    return this;
-  }
+	public Squad addRolesItem(Integer rolesItem) {
+		if (this.roles == null) {
+			this.roles = new ArrayList<Integer>();
+		}
+		this.roles.add(rolesItem);
+		return this;
+	}
 
-   /**
-   * List of roles attached to that Squad
-   * @return roles
-  **/
-  @Schema(description = "List of roles attached to that Squad")
-  public List<Integer> getRoles() {
-    return roles;
-  }
+	/**
+	 * List of roles attached to that Squad
+	 * 
+	 * @return roles
+	 **/
+	@Schema(description = "List of roles attached to that Squad")
+	public List<Integer> getRoles() {
+		return roles;
+	}
 
-  public void setRoles(List<Integer> roles) {
-    this.roles = roles;
-  }
+	public void setRoles(List<Integer> roles) {
+		this.roles = roles;
+	}
 
-  public Squad moderators(List<Integer> moderators) {
-    this.moderators = moderators;
-    return this;
-  }
+	public Squad moderators(List<Integer> moderators) {
+		this.moderators = moderators;
+		return this;
+	}
 
-  public Squad addModeratorsItem(Integer moderatorsItem) {
-    if (this.moderators == null) {
-      this.moderators = new ArrayList<Integer>();
-    }
-    this.moderators.add(moderatorsItem);
-    return this;
-  }
+	public Squad addModeratorsItem(Integer moderatorsItem) {
+		if (this.moderators == null) {
+			this.moderators = new ArrayList<Integer>();
+		}
+		this.moderators.add(moderatorsItem);
+		return this;
+	}
 
-   /**
-   * List of moderators attached to that Squad
-   * @return moderators
-  **/
-  @Schema(description = "List of moderators attached to that Squad")
-  public List<Integer> getModerators() {
-    return moderators;
-  }
+	/**
+	 * List of moderators attached to that Squad
+	 * 
+	 * @return moderators
+	 **/
+	@Schema(description = "List of moderators attached to that Squad")
+	public List<Integer> getModerators() {
+		return moderators;
+	}
 
-  public void setModerators(List<Integer> moderators) {
-    this.moderators = moderators;
-  }
+	public void setModerators(List<Integer> moderators) {
+		this.moderators = moderators;
+	}
 
-  public Squad members(List<Integer> members) {
-    this.members = members;
-    return this;
-  }
+	public Squad members(List<Integer> members) {
+		this.members = members;
+		return this;
+	}
 
-  public Squad addMembersItem(Integer membersItem) {
-    if (this.members == null) {
-      this.members = new ArrayList<Integer>();
-    }
-    this.members.add(membersItem);
-    return this;
-  }
+	public Squad addMembersItem(Integer membersItem) {
+		if (this.members == null) {
+			this.members = new ArrayList<Integer>();
+		}
+		this.members.add(membersItem);
+		return this;
+	}
 
-   /**
-   * List of members attached to that Squad
-   * @return members
-  **/
-  @Schema(description = "List of members attached to that Squad")
-  public List<Integer> getMembers() {
-    return members;
-  }
+	/**
+	 * List of members attached to that Squad
+	 * 
+	 * @return members
+	 **/
+	@Schema(description = "List of members attached to that Squad")
+	public List<Integer> getMembers() {
+		return members;
+	}
 
-  public void setMembers(List<Integer> members) {
-    this.members = members;
-  }
+	public void setMembers(List<Integer> members) {
+		this.members = members;
+	}
 
-  public Squad applications(List<Integer> applications) {
-    this.applications = applications;
-    return this;
-  }
+	public Squad applications(List<Integer> applications) {
+		this.applications = applications;
+		return this;
+	}
 
-  public Squad addApplicationsItem(Integer applicationsItem) {
-    if (this.applications == null) {
-      this.applications = new ArrayList<Integer>();
-    }
-    this.applications.add(applicationsItem);
-    return this;
-  }
+	public Squad addApplicationsItem(Integer applicationsItem) {
+		if (this.applications == null) {
+			this.applications = new ArrayList<Integer>();
+		}
+		this.applications.add(applicationsItem);
+		return this;
+	}
 
-   /**
-   * List of candidates attached to that Squad
-   * @return applications
-  **/
-  @Schema(description = "List of candidates attached to that Squad")
-  public List<Integer> getApplications() {
-    return applications;
-  }
+	/**
+	 * List of candidates attached to that Squad
+	 * 
+	 * @return applications
+	 **/
+	@Schema(description = "List of candidates attached to that Squad")
+	public List<Integer> getApplications() {
+		return applications;
+	}
 
-  public void setApplications(List<Integer> applications) {
-    this.applications = applications;
-  }
+	public void setApplications(List<Integer> applications) {
+		this.applications = applications;
+	}
 
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Squad squad = (Squad) o;
+		return Objects.equals(this.roles, squad.roles) && Objects.equals(this.moderators, squad.moderators)
+				&& Objects.equals(this.members, squad.members) && Objects.equals(this.applications, squad.applications)
+				&& super.equals(o);
+	}
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Squad squad = (Squad) o;
-    return Objects.equals(this.roles, squad.roles) &&
-        Objects.equals(this.moderators, squad.moderators) &&
-        Objects.equals(this.members, squad.members) &&
-        Objects.equals(this.applications, squad.applications) &&
-        super.equals(o);
-  }
+	@Override
+	public int hashCode() {
+		return Objects.hash(roles, moderators, members, applications, super.hashCode());
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(roles, moderators, members, applications, super.hashCode());
-  }
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class Squad {\n");
+		sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+		sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
+		sb.append("    moderators: ").append(toIndentedString(moderators)).append("\n");
+		sb.append("    members: ").append(toIndentedString(members)).append("\n");
+		sb.append("    applications: ").append(toIndentedString(applications)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
 
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Squad {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
-    sb.append("    moderators: ").append(toIndentedString(moderators)).append("\n");
-    sb.append("    members: ").append(toIndentedString(members)).append("\n");
-    sb.append("    applications: ").append(toIndentedString(applications)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 
 }

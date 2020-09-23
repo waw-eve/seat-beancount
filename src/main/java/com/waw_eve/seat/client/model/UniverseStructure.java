@@ -13,102 +13,99 @@
 package com.waw_eve.seat.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.IOException;
+
 /**
  * Universe Structure
  */
 @Schema(description = "Universe Structure")
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-09-23T10:10:39.586058800+08:00[Asia/Shanghai]")
 public class UniverseStructure {
-  @SerializedName("structure_id")
-  private Long structureId = null;
+	@SerializedName("structure_id")
+	private Long structureId = null;
 
-  @SerializedName("name")
-  private String name = null;
+	@SerializedName("name")
+	private String name = null;
 
-  public UniverseStructure structureId(Long structureId) {
-    this.structureId = structureId;
-    return this;
-  }
+	public UniverseStructure structureId(Long structureId) {
+		this.structureId = structureId;
+		return this;
+	}
 
-   /**
-   * Structure identifier
-   * @return structureId
-  **/
-  @Schema(description = "Structure identifier")
-  public Long getStructureId() {
-    return structureId;
-  }
+	/**
+	 * Structure identifier
+	 * 
+	 * @return structureId
+	 **/
+	@Schema(description = "Structure identifier")
+	public Long getStructureId() {
+		return structureId;
+	}
 
-  public void setStructureId(Long structureId) {
-    this.structureId = structureId;
-  }
+	public void setStructureId(Long structureId) {
+		this.structureId = structureId;
+	}
 
-  public UniverseStructure name(String name) {
-    this.name = name;
-    return this;
-  }
+	public UniverseStructure name(String name) {
+		this.name = name;
+		return this;
+	}
 
-   /**
-   * Structure name
-   * @return name
-  **/
-  @Schema(description = "Structure name")
-  public String getName() {
-    return name;
-  }
+	/**
+	 * Structure name
+	 * 
+	 * @return name
+	 **/
+	@Schema(description = "Structure name")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		UniverseStructure universeStructure = (UniverseStructure) o;
+		return Objects.equals(this.structureId, universeStructure.structureId)
+				&& Objects.equals(this.name, universeStructure.name);
+	}
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    UniverseStructure universeStructure = (UniverseStructure) o;
-    return Objects.equals(this.structureId, universeStructure.structureId) &&
-        Objects.equals(this.name, universeStructure.name);
-  }
+	@Override
+	public int hashCode() {
+		return Objects.hash(structureId, name);
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(structureId, name);
-  }
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class UniverseStructure {\n");
 
+		sb.append("    structureId: ").append(toIndentedString(structureId)).append("\n");
+		sb.append("    name: ").append(toIndentedString(name)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class UniverseStructure {\n");
-    
-    sb.append("    structureId: ").append(toIndentedString(structureId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 
 }

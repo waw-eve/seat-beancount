@@ -13,148 +13,147 @@
 package com.waw_eve.seat.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.IOException;
+
 /**
  * Provide pagination urls for navigation
  */
 @Schema(description = "Provide pagination urls for navigation")
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-09-23T10:10:39.586058800+08:00[Asia/Shanghai]")
 public class ResourcePaginatedLinks {
-  @SerializedName("first")
-  private String first = null;
+	@SerializedName("first")
+	private String first = null;
 
-  @SerializedName("last")
-  private String last = null;
+	@SerializedName("last")
+	private String last = null;
 
-  @SerializedName("prev")
-  private String prev = null;
+	@SerializedName("prev")
+	private String prev = null;
 
-  @SerializedName("next")
-  private String next = null;
+	@SerializedName("next")
+	private String next = null;
 
-  public ResourcePaginatedLinks first(String first) {
-    this.first = first;
-    return this;
-  }
+	public ResourcePaginatedLinks first(String first) {
+		this.first = first;
+		return this;
+	}
 
-   /**
-   * First Page
-   * @return first
-  **/
-  @Schema(description = "First Page")
-  public String getFirst() {
-    return first;
-  }
+	/**
+	 * First Page
+	 * 
+	 * @return first
+	 **/
+	@Schema(description = "First Page")
+	public String getFirst() {
+		return first;
+	}
 
-  public void setFirst(String first) {
-    this.first = first;
-  }
+	public void setFirst(String first) {
+		this.first = first;
+	}
 
-  public ResourcePaginatedLinks last(String last) {
-    this.last = last;
-    return this;
-  }
+	public ResourcePaginatedLinks last(String last) {
+		this.last = last;
+		return this;
+	}
 
-   /**
-   * Last Page
-   * @return last
-  **/
-  @Schema(description = "Last Page")
-  public String getLast() {
-    return last;
-  }
+	/**
+	 * Last Page
+	 * 
+	 * @return last
+	 **/
+	@Schema(description = "Last Page")
+	public String getLast() {
+		return last;
+	}
 
-  public void setLast(String last) {
-    this.last = last;
-  }
+	public void setLast(String last) {
+		this.last = last;
+	}
 
-  public ResourcePaginatedLinks prev(String prev) {
-    this.prev = prev;
-    return this;
-  }
+	public ResourcePaginatedLinks prev(String prev) {
+		this.prev = prev;
+		return this;
+	}
 
-   /**
-   * Previous Page
-   * @return prev
-  **/
-  @Schema(description = "Previous Page")
-  public String getPrev() {
-    return prev;
-  }
+	/**
+	 * Previous Page
+	 * 
+	 * @return prev
+	 **/
+	@Schema(description = "Previous Page")
+	public String getPrev() {
+		return prev;
+	}
 
-  public void setPrev(String prev) {
-    this.prev = prev;
-  }
+	public void setPrev(String prev) {
+		this.prev = prev;
+	}
 
-  public ResourcePaginatedLinks next(String next) {
-    this.next = next;
-    return this;
-  }
+	public ResourcePaginatedLinks next(String next) {
+		this.next = next;
+		return this;
+	}
 
-   /**
-   * Next Page
-   * @return next
-  **/
-  @Schema(description = "Next Page")
-  public String getNext() {
-    return next;
-  }
+	/**
+	 * Next Page
+	 * 
+	 * @return next
+	 **/
+	@Schema(description = "Next Page")
+	public String getNext() {
+		return next;
+	}
 
-  public void setNext(String next) {
-    this.next = next;
-  }
+	public void setNext(String next) {
+		this.next = next;
+	}
 
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		ResourcePaginatedLinks resourcePaginatedLinks = (ResourcePaginatedLinks) o;
+		return Objects.equals(this.first, resourcePaginatedLinks.first)
+				&& Objects.equals(this.last, resourcePaginatedLinks.last)
+				&& Objects.equals(this.prev, resourcePaginatedLinks.prev)
+				&& Objects.equals(this.next, resourcePaginatedLinks.next);
+	}
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ResourcePaginatedLinks resourcePaginatedLinks = (ResourcePaginatedLinks) o;
-    return Objects.equals(this.first, resourcePaginatedLinks.first) &&
-        Objects.equals(this.last, resourcePaginatedLinks.last) &&
-        Objects.equals(this.prev, resourcePaginatedLinks.prev) &&
-        Objects.equals(this.next, resourcePaginatedLinks.next);
-  }
+	@Override
+	public int hashCode() {
+		return Objects.hash(first, last, prev, next);
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(first, last, prev, next);
-  }
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class ResourcePaginatedLinks {\n");
 
+		sb.append("    first: ").append(toIndentedString(first)).append("\n");
+		sb.append("    last: ").append(toIndentedString(last)).append("\n");
+		sb.append("    prev: ").append(toIndentedString(prev)).append("\n");
+		sb.append("    next: ").append(toIndentedString(next)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ResourcePaginatedLinks {\n");
-    
-    sb.append("    first: ").append(toIndentedString(first)).append("\n");
-    sb.append("    last: ").append(toIndentedString(last)).append("\n");
-    sb.append("    prev: ").append(toIndentedString(prev)).append("\n");
-    sb.append("    next: ").append(toIndentedString(next)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 
 }

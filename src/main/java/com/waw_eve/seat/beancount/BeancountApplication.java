@@ -1,16 +1,49 @@
 package com.waw_eve.seat.beancount;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+import com.waw_eve.seat.client.invoker.ApiClient;
+import com.waw_eve.seat.client.invoker.Configuration;
+
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author KagurazakaNyaa <i@kagurazakanyaa.com>
  *
  */
+@Slf4j
 public class BeancountApplication {
+
+	private static ApiClient apiClient = Configuration.getDefaultApiClient();
+
+	private static Gson gson = new Gson();
+
+	private static Config config = null;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		String configFile = "config.json";
+		try {
+			if (args.length > 0) {
+				configFile = args[0];
+			}
+			config = gson.fromJson(new FileReader(configFile), Config.class);
+		} catch (JsonSyntaxException | JsonIOException e) {
+			log.error("Get exception on parse config.\nPlease check config file.");
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			log.error("Cannot read config file " + configFile + "\nPlease check config file.");
+			e.printStackTrace();
+		}
+		apiClient.setAccessToken(config.getToken());
+		apiClient.setBasePath(config.getBaseUrl());
 
 	}
 

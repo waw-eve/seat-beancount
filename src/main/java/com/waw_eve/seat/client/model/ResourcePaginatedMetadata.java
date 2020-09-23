@@ -13,217 +13,219 @@
 package com.waw_eve.seat.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.IOException;
+
 /**
  * Information related to the paginated response
  */
 @Schema(description = "Information related to the paginated response")
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-09-23T10:10:39.586058800+08:00[Asia/Shanghai]")
 public class ResourcePaginatedMetadata {
-  @SerializedName("current_page")
-  private Integer currentPage = null;
+	@SerializedName("current_page")
+	private Integer currentPage = null;
 
-  @SerializedName("from")
-  private Integer from = null;
+	@SerializedName("from")
+	private Integer from = null;
 
-  @SerializedName("last_page")
-  private Integer lastPage = null;
+	@SerializedName("last_page")
+	private Integer lastPage = null;
 
-  @SerializedName("path")
-  private String path = null;
+	@SerializedName("path")
+	private String path = null;
 
-  @SerializedName("per_page")
-  private Integer perPage = null;
+	@SerializedName("per_page")
+	private Integer perPage = null;
 
-  @SerializedName("to")
-  private Integer to = null;
+	@SerializedName("to")
+	private Integer to = null;
 
-  @SerializedName("total")
-  private Integer total = null;
+	@SerializedName("total")
+	private Integer total = null;
 
-  public ResourcePaginatedMetadata currentPage(Integer currentPage) {
-    this.currentPage = currentPage;
-    return this;
-  }
+	public ResourcePaginatedMetadata currentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+		return this;
+	}
 
-   /**
-   * The current page
-   * @return currentPage
-  **/
-  @Schema(description = "The current page")
-  public Integer getCurrentPage() {
-    return currentPage;
-  }
+	/**
+	 * The current page
+	 * 
+	 * @return currentPage
+	 **/
+	@Schema(description = "The current page")
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
 
-  public void setCurrentPage(Integer currentPage) {
-    this.currentPage = currentPage;
-  }
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
 
-  public ResourcePaginatedMetadata from(Integer from) {
-    this.from = from;
-    return this;
-  }
+	public ResourcePaginatedMetadata from(Integer from) {
+		this.from = from;
+		return this;
+	}
 
-   /**
-   * The first entity number on the page
-   * @return from
-  **/
-  @Schema(description = "The first entity number on the page")
-  public Integer getFrom() {
-    return from;
-  }
+	/**
+	 * The first entity number on the page
+	 * 
+	 * @return from
+	 **/
+	@Schema(description = "The first entity number on the page")
+	public Integer getFrom() {
+		return from;
+	}
 
-  public void setFrom(Integer from) {
-    this.from = from;
-  }
+	public void setFrom(Integer from) {
+		this.from = from;
+	}
 
-  public ResourcePaginatedMetadata lastPage(Integer lastPage) {
-    this.lastPage = lastPage;
-    return this;
-  }
+	public ResourcePaginatedMetadata lastPage(Integer lastPage) {
+		this.lastPage = lastPage;
+		return this;
+	}
 
-   /**
-   * The last page available
-   * @return lastPage
-  **/
-  @Schema(description = "The last page available")
-  public Integer getLastPage() {
-    return lastPage;
-  }
+	/**
+	 * The last page available
+	 * 
+	 * @return lastPage
+	 **/
+	@Schema(description = "The last page available")
+	public Integer getLastPage() {
+		return lastPage;
+	}
 
-  public void setLastPage(Integer lastPage) {
-    this.lastPage = lastPage;
-  }
+	public void setLastPage(Integer lastPage) {
+		this.lastPage = lastPage;
+	}
 
-  public ResourcePaginatedMetadata path(String path) {
-    this.path = path;
-    return this;
-  }
+	public ResourcePaginatedMetadata path(String path) {
+		this.path = path;
+		return this;
+	}
 
-   /**
-   * The base endpoint
-   * @return path
-  **/
-  @Schema(description = "The base endpoint")
-  public String getPath() {
-    return path;
-  }
+	/**
+	 * The base endpoint
+	 * 
+	 * @return path
+	 **/
+	@Schema(description = "The base endpoint")
+	public String getPath() {
+		return path;
+	}
 
-  public void setPath(String path) {
-    this.path = path;
-  }
+	public void setPath(String path) {
+		this.path = path;
+	}
 
-  public ResourcePaginatedMetadata perPage(Integer perPage) {
-    this.perPage = perPage;
-    return this;
-  }
+	public ResourcePaginatedMetadata perPage(Integer perPage) {
+		this.perPage = perPage;
+		return this;
+	}
 
-   /**
-   * The pagination step
-   * @return perPage
-  **/
-  @Schema(description = "The pagination step")
-  public Integer getPerPage() {
-    return perPage;
-  }
+	/**
+	 * The pagination step
+	 * 
+	 * @return perPage
+	 **/
+	@Schema(description = "The pagination step")
+	public Integer getPerPage() {
+		return perPage;
+	}
 
-  public void setPerPage(Integer perPage) {
-    this.perPage = perPage;
-  }
+	public void setPerPage(Integer perPage) {
+		this.perPage = perPage;
+	}
 
-  public ResourcePaginatedMetadata to(Integer to) {
-    this.to = to;
-    return this;
-  }
+	public ResourcePaginatedMetadata to(Integer to) {
+		this.to = to;
+		return this;
+	}
 
-   /**
-   * The last entity number on the page
-   * @return to
-  **/
-  @Schema(description = "The last entity number on the page")
-  public Integer getTo() {
-    return to;
-  }
+	/**
+	 * The last entity number on the page
+	 * 
+	 * @return to
+	 **/
+	@Schema(description = "The last entity number on the page")
+	public Integer getTo() {
+		return to;
+	}
 
-  public void setTo(Integer to) {
-    this.to = to;
-  }
+	public void setTo(Integer to) {
+		this.to = to;
+	}
 
-  public ResourcePaginatedMetadata total(Integer total) {
-    this.total = total;
-    return this;
-  }
+	public ResourcePaginatedMetadata total(Integer total) {
+		this.total = total;
+		return this;
+	}
 
-   /**
-   * The total of available entities
-   * @return total
-  **/
-  @Schema(description = "The total of available entities")
-  public Integer getTotal() {
-    return total;
-  }
+	/**
+	 * The total of available entities
+	 * 
+	 * @return total
+	 **/
+	@Schema(description = "The total of available entities")
+	public Integer getTotal() {
+		return total;
+	}
 
-  public void setTotal(Integer total) {
-    this.total = total;
-  }
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
 
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		ResourcePaginatedMetadata resourcePaginatedMetadata = (ResourcePaginatedMetadata) o;
+		return Objects.equals(this.currentPage, resourcePaginatedMetadata.currentPage)
+				&& Objects.equals(this.from, resourcePaginatedMetadata.from)
+				&& Objects.equals(this.lastPage, resourcePaginatedMetadata.lastPage)
+				&& Objects.equals(this.path, resourcePaginatedMetadata.path)
+				&& Objects.equals(this.perPage, resourcePaginatedMetadata.perPage)
+				&& Objects.equals(this.to, resourcePaginatedMetadata.to)
+				&& Objects.equals(this.total, resourcePaginatedMetadata.total);
+	}
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ResourcePaginatedMetadata resourcePaginatedMetadata = (ResourcePaginatedMetadata) o;
-    return Objects.equals(this.currentPage, resourcePaginatedMetadata.currentPage) &&
-        Objects.equals(this.from, resourcePaginatedMetadata.from) &&
-        Objects.equals(this.lastPage, resourcePaginatedMetadata.lastPage) &&
-        Objects.equals(this.path, resourcePaginatedMetadata.path) &&
-        Objects.equals(this.perPage, resourcePaginatedMetadata.perPage) &&
-        Objects.equals(this.to, resourcePaginatedMetadata.to) &&
-        Objects.equals(this.total, resourcePaginatedMetadata.total);
-  }
+	@Override
+	public int hashCode() {
+		return Objects.hash(currentPage, from, lastPage, path, perPage, to, total);
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(currentPage, from, lastPage, path, perPage, to, total);
-  }
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class ResourcePaginatedMetadata {\n");
 
+		sb.append("    currentPage: ").append(toIndentedString(currentPage)).append("\n");
+		sb.append("    from: ").append(toIndentedString(from)).append("\n");
+		sb.append("    lastPage: ").append(toIndentedString(lastPage)).append("\n");
+		sb.append("    path: ").append(toIndentedString(path)).append("\n");
+		sb.append("    perPage: ").append(toIndentedString(perPage)).append("\n");
+		sb.append("    to: ").append(toIndentedString(to)).append("\n");
+		sb.append("    total: ").append(toIndentedString(total)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ResourcePaginatedMetadata {\n");
-    
-    sb.append("    currentPage: ").append(toIndentedString(currentPage)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    lastPage: ").append(toIndentedString(lastPage)).append("\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
-    sb.append("    perPage: ").append(toIndentedString(perPage)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 
 }

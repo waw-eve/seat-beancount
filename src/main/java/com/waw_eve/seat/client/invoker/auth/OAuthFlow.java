@@ -13,5 +13,5 @@
 package com.waw_eve.seat.client.invoker.auth;
 
 public enum OAuthFlow {
-    accessCode, implicit, password, application
+	accessCode, implicit, password, application
 }

@@ -12,409 +12,430 @@
 
 package com.waw_eve.seat.client.model;
 
+import java.io.IOException;
 import java.util.Objects;
-import java.util.Arrays;
+
+import org.threeten.bp.OffsetDateTime;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.waw_eve.seat.client.model.UniverseName;
+
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.IOException;
-import org.threeten.bp.OffsetDateTime;
+
 /**
  * Character Wallet Journal
  */
 @Schema(description = "Character Wallet Journal")
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-09-23T10:10:39.586058800+08:00[Asia/Shanghai]")
 public class CharacterWalletJournal {
-  @SerializedName("id")
-  private Long id = null;
+	@SerializedName("id")
+	private Long id = null;
 
-  @SerializedName("date")
-  private OffsetDateTime date = null;
+	@SerializedName("date")
+	private OffsetDateTime date = null;
 
-  @SerializedName("ref_type")
-  private String refType = null;
+	@SerializedName("ref_type")
+	private String refType = null;
 
-  @SerializedName("amount")
-  private Double amount = null;
+	@SerializedName("amount")
+	private Double amount = null;
 
-  @SerializedName("balance")
-  private Double balance = null;
+	@SerializedName("balance")
+	private Double balance = null;
 
-  @SerializedName("reason")
-  private String reason = null;
+	@SerializedName("reason")
+	private String reason = null;
 
-  @SerializedName("tax_receiver_id")
-  private Long taxReceiverId = null;
+	@SerializedName("tax_receiver_id")
+	private Long taxReceiverId = null;
 
-  @SerializedName("tax")
-  private Double tax = null;
+	@SerializedName("tax")
+	private Double tax = null;
 
-  @SerializedName("context_id")
-  private Long contextId = null;
+	@SerializedName("context_id")
+	private Long contextId = null;
 
-  /**
-   * The type of the given context_id if present
-   */
-  @JsonAdapter(ContextIdTypeEnum.Adapter.class)
-  public enum ContextIdTypeEnum {
-    STRUCTURE_ID("structure_id"),
-    STATION_ID("station_id"),
-    MARKET_TRANSACTION_ID("market_transaction_id"),
-    CHARACTER_ID("character_id"),
-    CORPORATION_ID("corporation_id"),
-    ALLIANCE_ID("alliance_id"),
-    EVE_SYSTEM("eve_system"),
-    INDUSTRY_JOB_ID("industry_job_id"),
-    CONTRACT_ID("contract_id"),
-    PLANET_ID("planet_id"),
-    SYSTEM_ID("system_id"),
-    TYPE_ID("type_id");
+	/**
+	 * The type of the given context_id if present
+	 */
+	@JsonAdapter(ContextIdTypeEnum.Adapter.class)
+	public enum ContextIdTypeEnum {
+		STRUCTURE_ID("structure_id"), STATION_ID("station_id"), MARKET_TRANSACTION_ID("market_transaction_id"),
+		CHARACTER_ID("character_id"), CORPORATION_ID("corporation_id"), ALLIANCE_ID("alliance_id"),
+		EVE_SYSTEM("eve_system"), INDUSTRY_JOB_ID("industry_job_id"), CONTRACT_ID("contract_id"),
+		PLANET_ID("planet_id"), SYSTEM_ID("system_id"), TYPE_ID("type_id");
 
-    private String value;
+		private String value;
 
-    ContextIdTypeEnum(String value) {
-      this.value = value;
-    }
-    public String getValue() {
-      return value;
-    }
+		ContextIdTypeEnum(String value) {
+			this.value = value;
+		}
 
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-    public static ContextIdTypeEnum fromValue(String text) {
-      for (ContextIdTypeEnum b : ContextIdTypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-    public static class Adapter extends TypeAdapter<ContextIdTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ContextIdTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
+		public String getValue() {
+			return value;
+		}
 
-      @Override
-      public ContextIdTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return ContextIdTypeEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }  @SerializedName("context_id_type")
-  private ContextIdTypeEnum contextIdType = null;
+		@Override
+		public String toString() {
+			return String.valueOf(value);
+		}
 
-  @SerializedName("description")
-  private String description = null;
+		public static ContextIdTypeEnum fromValue(String text) {
+			for (ContextIdTypeEnum b : ContextIdTypeEnum.values()) {
+				if (String.valueOf(b.value).equals(text)) {
+					return b;
+				}
+			}
+			return null;
+		}
 
-  @SerializedName("first_party")
-  private UniverseName firstParty = null;
+		public static class Adapter extends TypeAdapter<ContextIdTypeEnum> {
+			@Override
+			public void write(final JsonWriter jsonWriter, final ContextIdTypeEnum enumeration) throws IOException {
+				jsonWriter.value(enumeration.getValue());
+			}
 
-  @SerializedName("second_party")
-  private UniverseName secondParty = null;
+			@Override
+			public ContextIdTypeEnum read(final JsonReader jsonReader) throws IOException {
+				String value = jsonReader.nextString();
+				return ContextIdTypeEnum.fromValue(String.valueOf(value));
+			}
+		}
+	}
 
-  public CharacterWalletJournal id(Long id) {
-    this.id = id;
-    return this;
-  }
+	@SerializedName("context_id_type")
+	private ContextIdTypeEnum contextIdType = null;
 
-   /**
-   * Unique journal reference ID
-   * @return id
-  **/
-  @Schema(description = "Unique journal reference ID")
-  public Long getId() {
-    return id;
-  }
+	@SerializedName("description")
+	private String description = null;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	@SerializedName("first_party")
+	private UniverseName firstParty = null;
 
-  public CharacterWalletJournal date(OffsetDateTime date) {
-    this.date = date;
-    return this;
-  }
+	@SerializedName("second_party")
+	private UniverseName secondParty = null;
 
-   /**
-   * Date and time of transaction
-   * @return date
-  **/
-  @Schema(description = "Date and time of transaction")
-  public OffsetDateTime getDate() {
-    return date;
-  }
+	public CharacterWalletJournal id(Long id) {
+		this.id = id;
+		return this;
+	}
 
-  public void setDate(OffsetDateTime date) {
-    this.date = date;
-  }
+	/**
+	 * Unique journal reference ID
+	 * 
+	 * @return id
+	 **/
+	@Schema(description = "Unique journal reference ID")
+	public Long getId() {
+		return id;
+	}
 
-  public CharacterWalletJournal refType(String refType) {
-    this.refType = refType;
-    return this;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-   /**
-   * The transaction type for the given transaction. Different transaction types will populate different attributes. Note: If you have an existing XML API application that is using ref_types, you will need to know which string ESI ref_type maps to which integer. You can look at the following file to see string-&gt;int mappings: https://github.com/ccpgames/eve-glue/blob/master/eve_glue/wallet_journal_ref.py
-   * @return refType
-  **/
-  @Schema(description = "The transaction type for the given transaction. Different transaction types will populate different attributes. Note: If you have an existing XML API application that is using ref_types, you will need to know which string ESI ref_type maps to which integer. You can look at the following file to see string->int mappings: https://github.com/ccpgames/eve-glue/blob/master/eve_glue/wallet_journal_ref.py")
-  public String getRefType() {
-    return refType;
-  }
+	public CharacterWalletJournal date(OffsetDateTime date) {
+		this.date = date;
+		return this;
+	}
 
-  public void setRefType(String refType) {
-    this.refType = refType;
-  }
+	/**
+	 * Date and time of transaction
+	 * 
+	 * @return date
+	 **/
+	@Schema(description = "Date and time of transaction")
+	public OffsetDateTime getDate() {
+		return date;
+	}
 
-  public CharacterWalletJournal amount(Double amount) {
-    this.amount = amount;
-    return this;
-  }
+	public void setDate(OffsetDateTime date) {
+		this.date = date;
+	}
 
-   /**
-   * The amount of ISK given or taken from the wallet as a result of the given transaction. Positive when ISK is deposited into the wallet and negative when ISK is withdrawn
-   * @return amount
-  **/
-  @Schema(description = "The amount of ISK given or taken from the wallet as a result of the given transaction. Positive when ISK is deposited into the wallet and negative when ISK is withdrawn")
-  public Double getAmount() {
-    return amount;
-  }
+	public CharacterWalletJournal refType(String refType) {
+		this.refType = refType;
+		return this;
+	}
 
-  public void setAmount(Double amount) {
-    this.amount = amount;
-  }
+	/**
+	 * The transaction type for the given transaction. Different transaction types
+	 * will populate different attributes. Note: If you have an existing XML API
+	 * application that is using ref_types, you will need to know which string ESI
+	 * ref_type maps to which integer. You can look at the following file to see
+	 * string-&gt;int mappings:
+	 * https://github.com/ccpgames/eve-glue/blob/master/eve_glue/wallet_journal_ref.py
+	 * 
+	 * @return refType
+	 **/
+	@Schema(description = "The transaction type for the given transaction. Different transaction types will populate different attributes. Note: If you have an existing XML API application that is using ref_types, you will need to know which string ESI ref_type maps to which integer. You can look at the following file to see string->int mappings: https://github.com/ccpgames/eve-glue/blob/master/eve_glue/wallet_journal_ref.py")
+	public String getRefType() {
+		return refType;
+	}
 
-  public CharacterWalletJournal balance(Double balance) {
-    this.balance = balance;
-    return this;
-  }
+	public void setRefType(String refType) {
+		this.refType = refType;
+	}
 
-   /**
-   * Wallet balance after transaction occurred
-   * @return balance
-  **/
-  @Schema(description = "Wallet balance after transaction occurred")
-  public Double getBalance() {
-    return balance;
-  }
+	public CharacterWalletJournal amount(Double amount) {
+		this.amount = amount;
+		return this;
+	}
 
-  public void setBalance(Double balance) {
-    this.balance = balance;
-  }
+	/**
+	 * The amount of ISK given or taken from the wallet as a result of the given
+	 * transaction. Positive when ISK is deposited into the wallet and negative when
+	 * ISK is withdrawn
+	 * 
+	 * @return amount
+	 **/
+	@Schema(description = "The amount of ISK given or taken from the wallet as a result of the given transaction. Positive when ISK is deposited into the wallet and negative when ISK is withdrawn")
+	public Double getAmount() {
+		return amount;
+	}
 
-  public CharacterWalletJournal reason(String reason) {
-    this.reason = reason;
-    return this;
-  }
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
 
-   /**
-   * The user stated reason for the transaction. Only applies to some ref_types
-   * @return reason
-  **/
-  @Schema(description = "The user stated reason for the transaction. Only applies to some ref_types")
-  public String getReason() {
-    return reason;
-  }
+	public CharacterWalletJournal balance(Double balance) {
+		this.balance = balance;
+		return this;
+	}
 
-  public void setReason(String reason) {
-    this.reason = reason;
-  }
+	/**
+	 * Wallet balance after transaction occurred
+	 * 
+	 * @return balance
+	 **/
+	@Schema(description = "Wallet balance after transaction occurred")
+	public Double getBalance() {
+		return balance;
+	}
 
-  public CharacterWalletJournal taxReceiverId(Long taxReceiverId) {
-    this.taxReceiverId = taxReceiverId;
-    return this;
-  }
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
 
-   /**
-   * The corporation ID receiving any tax paid. Only applies to tax related transactions
-   * @return taxReceiverId
-  **/
-  @Schema(description = "The corporation ID receiving any tax paid. Only applies to tax related transactions")
-  public Long getTaxReceiverId() {
-    return taxReceiverId;
-  }
+	public CharacterWalletJournal reason(String reason) {
+		this.reason = reason;
+		return this;
+	}
 
-  public void setTaxReceiverId(Long taxReceiverId) {
-    this.taxReceiverId = taxReceiverId;
-  }
+	/**
+	 * The user stated reason for the transaction. Only applies to some ref_types
+	 * 
+	 * @return reason
+	 **/
+	@Schema(description = "The user stated reason for the transaction. Only applies to some ref_types")
+	public String getReason() {
+		return reason;
+	}
 
-  public CharacterWalletJournal tax(Double tax) {
-    this.tax = tax;
-    return this;
-  }
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 
-   /**
-   * Tax amount received. Only applies to tax related transactions
-   * @return tax
-  **/
-  @Schema(description = "Tax amount received. Only applies to tax related transactions")
-  public Double getTax() {
-    return tax;
-  }
+	public CharacterWalletJournal taxReceiverId(Long taxReceiverId) {
+		this.taxReceiverId = taxReceiverId;
+		return this;
+	}
 
-  public void setTax(Double tax) {
-    this.tax = tax;
-  }
+	/**
+	 * The corporation ID receiving any tax paid. Only applies to tax related
+	 * transactions
+	 * 
+	 * @return taxReceiverId
+	 **/
+	@Schema(description = "The corporation ID receiving any tax paid. Only applies to tax related transactions")
+	public Long getTaxReceiverId() {
+		return taxReceiverId;
+	}
 
-  public CharacterWalletJournal contextId(Long contextId) {
-    this.contextId = contextId;
-    return this;
-  }
+	public void setTaxReceiverId(Long taxReceiverId) {
+		this.taxReceiverId = taxReceiverId;
+	}
 
-   /**
-   * An ID that gives extra context to the particular transaction. Because of legacy reasons the context is completely different per ref_type and means different things. It is also possible to not have a context_id
-   * @return contextId
-  **/
-  @Schema(description = "An ID that gives extra context to the particular transaction. Because of legacy reasons the context is completely different per ref_type and means different things. It is also possible to not have a context_id")
-  public Long getContextId() {
-    return contextId;
-  }
+	public CharacterWalletJournal tax(Double tax) {
+		this.tax = tax;
+		return this;
+	}
 
-  public void setContextId(Long contextId) {
-    this.contextId = contextId;
-  }
+	/**
+	 * Tax amount received. Only applies to tax related transactions
+	 * 
+	 * @return tax
+	 **/
+	@Schema(description = "Tax amount received. Only applies to tax related transactions")
+	public Double getTax() {
+		return tax;
+	}
 
-  public CharacterWalletJournal contextIdType(ContextIdTypeEnum contextIdType) {
-    this.contextIdType = contextIdType;
-    return this;
-  }
+	public void setTax(Double tax) {
+		this.tax = tax;
+	}
 
-   /**
-   * The type of the given context_id if present
-   * @return contextIdType
-  **/
-  @Schema(description = "The type of the given context_id if present")
-  public ContextIdTypeEnum getContextIdType() {
-    return contextIdType;
-  }
+	public CharacterWalletJournal contextId(Long contextId) {
+		this.contextId = contextId;
+		return this;
+	}
 
-  public void setContextIdType(ContextIdTypeEnum contextIdType) {
-    this.contextIdType = contextIdType;
-  }
+	/**
+	 * An ID that gives extra context to the particular transaction. Because of
+	 * legacy reasons the context is completely different per ref_type and means
+	 * different things. It is also possible to not have a context_id
+	 * 
+	 * @return contextId
+	 **/
+	@Schema(description = "An ID that gives extra context to the particular transaction. Because of legacy reasons the context is completely different per ref_type and means different things. It is also possible to not have a context_id")
+	public Long getContextId() {
+		return contextId;
+	}
 
-  public CharacterWalletJournal description(String description) {
-    this.description = description;
-    return this;
-  }
+	public void setContextId(Long contextId) {
+		this.contextId = contextId;
+	}
 
-   /**
-   * The reason for the transaction, mirrors what is seen in the client
-   * @return description
-  **/
-  @Schema(description = "The reason for the transaction, mirrors what is seen in the client")
-  public String getDescription() {
-    return description;
-  }
+	public CharacterWalletJournal contextIdType(ContextIdTypeEnum contextIdType) {
+		this.contextIdType = contextIdType;
+		return this;
+	}
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+	/**
+	 * The type of the given context_id if present
+	 * 
+	 * @return contextIdType
+	 **/
+	@Schema(description = "The type of the given context_id if present")
+	public ContextIdTypeEnum getContextIdType() {
+		return contextIdType;
+	}
 
-  public CharacterWalletJournal firstParty(UniverseName firstParty) {
-    this.firstParty = firstParty;
-    return this;
-  }
+	public void setContextIdType(ContextIdTypeEnum contextIdType) {
+		this.contextIdType = contextIdType;
+	}
 
-   /**
-   * Get firstParty
-   * @return firstParty
-  **/
-  @Schema(description = "")
-  public UniverseName getFirstParty() {
-    return firstParty;
-  }
+	public CharacterWalletJournal description(String description) {
+		this.description = description;
+		return this;
+	}
 
-  public void setFirstParty(UniverseName firstParty) {
-    this.firstParty = firstParty;
-  }
+	/**
+	 * The reason for the transaction, mirrors what is seen in the client
+	 * 
+	 * @return description
+	 **/
+	@Schema(description = "The reason for the transaction, mirrors what is seen in the client")
+	public String getDescription() {
+		return description;
+	}
 
-  public CharacterWalletJournal secondParty(UniverseName secondParty) {
-    this.secondParty = secondParty;
-    return this;
-  }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-   /**
-   * Get secondParty
-   * @return secondParty
-  **/
-  @Schema(description = "")
-  public UniverseName getSecondParty() {
-    return secondParty;
-  }
+	public CharacterWalletJournal firstParty(UniverseName firstParty) {
+		this.firstParty = firstParty;
+		return this;
+	}
 
-  public void setSecondParty(UniverseName secondParty) {
-    this.secondParty = secondParty;
-  }
+	/**
+	 * Get firstParty
+	 * 
+	 * @return firstParty
+	 **/
+	@Schema(description = "")
+	public UniverseName getFirstParty() {
+		return firstParty;
+	}
 
+	public void setFirstParty(UniverseName firstParty) {
+		this.firstParty = firstParty;
+	}
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    CharacterWalletJournal characterWalletJournal = (CharacterWalletJournal) o;
-    return Objects.equals(this.id, characterWalletJournal.id) &&
-        Objects.equals(this.date, characterWalletJournal.date) &&
-        Objects.equals(this.refType, characterWalletJournal.refType) &&
-        Objects.equals(this.amount, characterWalletJournal.amount) &&
-        Objects.equals(this.balance, characterWalletJournal.balance) &&
-        Objects.equals(this.reason, characterWalletJournal.reason) &&
-        Objects.equals(this.taxReceiverId, characterWalletJournal.taxReceiverId) &&
-        Objects.equals(this.tax, characterWalletJournal.tax) &&
-        Objects.equals(this.contextId, characterWalletJournal.contextId) &&
-        Objects.equals(this.contextIdType, characterWalletJournal.contextIdType) &&
-        Objects.equals(this.description, characterWalletJournal.description) &&
-        Objects.equals(this.firstParty, characterWalletJournal.firstParty) &&
-        Objects.equals(this.secondParty, characterWalletJournal.secondParty);
-  }
+	public CharacterWalletJournal secondParty(UniverseName secondParty) {
+		this.secondParty = secondParty;
+		return this;
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, date, refType, amount, balance, reason, taxReceiverId, tax, contextId, contextIdType, description, firstParty, secondParty);
-  }
+	/**
+	 * Get secondParty
+	 * 
+	 * @return secondParty
+	 **/
+	@Schema(description = "")
+	public UniverseName getSecondParty() {
+		return secondParty;
+	}
 
+	public void setSecondParty(UniverseName secondParty) {
+		this.secondParty = secondParty;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CharacterWalletJournal {\n");
-    
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    date: ").append(toIndentedString(date)).append("\n");
-    sb.append("    refType: ").append(toIndentedString(refType)).append("\n");
-    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    balance: ").append(toIndentedString(balance)).append("\n");
-    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
-    sb.append("    taxReceiverId: ").append(toIndentedString(taxReceiverId)).append("\n");
-    sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
-    sb.append("    contextId: ").append(toIndentedString(contextId)).append("\n");
-    sb.append("    contextIdType: ").append(toIndentedString(contextIdType)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    firstParty: ").append(toIndentedString(firstParty)).append("\n");
-    sb.append("    secondParty: ").append(toIndentedString(secondParty)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		CharacterWalletJournal characterWalletJournal = (CharacterWalletJournal) o;
+		return Objects.equals(this.id, characterWalletJournal.id)
+				&& Objects.equals(this.date, characterWalletJournal.date)
+				&& Objects.equals(this.refType, characterWalletJournal.refType)
+				&& Objects.equals(this.amount, characterWalletJournal.amount)
+				&& Objects.equals(this.balance, characterWalletJournal.balance)
+				&& Objects.equals(this.reason, characterWalletJournal.reason)
+				&& Objects.equals(this.taxReceiverId, characterWalletJournal.taxReceiverId)
+				&& Objects.equals(this.tax, characterWalletJournal.tax)
+				&& Objects.equals(this.contextId, characterWalletJournal.contextId)
+				&& Objects.equals(this.contextIdType, characterWalletJournal.contextIdType)
+				&& Objects.equals(this.description, characterWalletJournal.description)
+				&& Objects.equals(this.firstParty, characterWalletJournal.firstParty)
+				&& Objects.equals(this.secondParty, characterWalletJournal.secondParty);
+	}
 
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, date, refType, amount, balance, reason, taxReceiverId, tax, contextId, contextIdType,
+				description, firstParty, secondParty);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class CharacterWalletJournal {\n");
+
+		sb.append("    id: ").append(toIndentedString(id)).append("\n");
+		sb.append("    date: ").append(toIndentedString(date)).append("\n");
+		sb.append("    refType: ").append(toIndentedString(refType)).append("\n");
+		sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+		sb.append("    balance: ").append(toIndentedString(balance)).append("\n");
+		sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+		sb.append("    taxReceiverId: ").append(toIndentedString(taxReceiverId)).append("\n");
+		sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
+		sb.append("    contextId: ").append(toIndentedString(contextId)).append("\n");
+		sb.append("    contextIdType: ").append(toIndentedString(contextIdType)).append("\n");
+		sb.append("    description: ").append(toIndentedString(description)).append("\n");
+		sb.append("    firstParty: ").append(toIndentedString(firstParty)).append("\n");
+		sb.append("    secondParty: ").append(toIndentedString(secondParty)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
+
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 
 }

@@ -12,139 +12,134 @@
 
 package com.waw_eve.seat.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import com.waw_eve.seat.client.model.CorporationWalletJournal;
-import com.waw_eve.seat.client.model.ResourcePaginatedLinks;
-import com.waw_eve.seat.client.model.ResourcePaginatedMetadata;
-import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.google.gson.annotations.SerializedName;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  * InlineResponse20026
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2020-09-23T10:10:39.586058800+08:00[Asia/Shanghai]")
 public class InlineResponse20026 {
-  @SerializedName("data")
-  private List<CorporationWalletJournal> data = null;
+	@SerializedName("data")
+	private List<CorporationWalletJournal> data = null;
 
-  @SerializedName("links")
-  private ResourcePaginatedLinks links = null;
+	@SerializedName("links")
+	private ResourcePaginatedLinks links = null;
 
-  @SerializedName("meta")
-  private ResourcePaginatedMetadata meta = null;
+	@SerializedName("meta")
+	private ResourcePaginatedMetadata meta = null;
 
-  public InlineResponse20026 data(List<CorporationWalletJournal> data) {
-    this.data = data;
-    return this;
-  }
+	public InlineResponse20026 data(List<CorporationWalletJournal> data) {
+		this.data = data;
+		return this;
+	}
 
-  public InlineResponse20026 addDataItem(CorporationWalletJournal dataItem) {
-    if (this.data == null) {
-      this.data = new ArrayList<CorporationWalletJournal>();
-    }
-    this.data.add(dataItem);
-    return this;
-  }
+	public InlineResponse20026 addDataItem(CorporationWalletJournal dataItem) {
+		if (this.data == null) {
+			this.data = new ArrayList<CorporationWalletJournal>();
+		}
+		this.data.add(dataItem);
+		return this;
+	}
 
-   /**
-   * Get data
-   * @return data
-  **/
-  @Schema(description = "")
-  public List<CorporationWalletJournal> getData() {
-    return data;
-  }
+	/**
+	 * Get data
+	 * 
+	 * @return data
+	 **/
+	@Schema(description = "")
+	public List<CorporationWalletJournal> getData() {
+		return data;
+	}
 
-  public void setData(List<CorporationWalletJournal> data) {
-    this.data = data;
-  }
+	public void setData(List<CorporationWalletJournal> data) {
+		this.data = data;
+	}
 
-  public InlineResponse20026 links(ResourcePaginatedLinks links) {
-    this.links = links;
-    return this;
-  }
+	public InlineResponse20026 links(ResourcePaginatedLinks links) {
+		this.links = links;
+		return this;
+	}
 
-   /**
-   * Get links
-   * @return links
-  **/
-  @Schema(description = "")
-  public ResourcePaginatedLinks getLinks() {
-    return links;
-  }
+	/**
+	 * Get links
+	 * 
+	 * @return links
+	 **/
+	@Schema(description = "")
+	public ResourcePaginatedLinks getLinks() {
+		return links;
+	}
 
-  public void setLinks(ResourcePaginatedLinks links) {
-    this.links = links;
-  }
+	public void setLinks(ResourcePaginatedLinks links) {
+		this.links = links;
+	}
 
-  public InlineResponse20026 meta(ResourcePaginatedMetadata meta) {
-    this.meta = meta;
-    return this;
-  }
+	public InlineResponse20026 meta(ResourcePaginatedMetadata meta) {
+		this.meta = meta;
+		return this;
+	}
 
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @Schema(description = "")
-  public ResourcePaginatedMetadata getMeta() {
-    return meta;
-  }
+	/**
+	 * Get meta
+	 * 
+	 * @return meta
+	 **/
+	@Schema(description = "")
+	public ResourcePaginatedMetadata getMeta() {
+		return meta;
+	}
 
-  public void setMeta(ResourcePaginatedMetadata meta) {
-    this.meta = meta;
-  }
+	public void setMeta(ResourcePaginatedMetadata meta) {
+		this.meta = meta;
+	}
 
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		InlineResponse20026 inlineResponse20026 = (InlineResponse20026) o;
+		return Objects.equals(this.data, inlineResponse20026.data)
+				&& Objects.equals(this.links, inlineResponse20026.links)
+				&& Objects.equals(this.meta, inlineResponse20026.meta);
+	}
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    InlineResponse20026 inlineResponse20026 = (InlineResponse20026) o;
-    return Objects.equals(this.data, inlineResponse20026.data) &&
-        Objects.equals(this.links, inlineResponse20026.links) &&
-        Objects.equals(this.meta, inlineResponse20026.meta);
-  }
+	@Override
+	public int hashCode() {
+		return Objects.hash(data, links, meta);
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(data, links, meta);
-  }
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class InlineResponse20026 {\n");
 
+		sb.append("    data: ").append(toIndentedString(data)).append("\n");
+		sb.append("    links: ").append(toIndentedString(links)).append("\n");
+		sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse20026 {\n");
-    
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 
 }

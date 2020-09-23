@@ -13,7 +13,6 @@
 package com.waw_eve.seat.client;
 
 import com.waw_eve.seat.client.invoker.ApiException;
-import com.waw_eve.seat.client.model.InlineResponse20017;
 import com.waw_eve.seat.client.model.InlineResponse20026;
 import org.junit.Test;
 import org.junit.Ignore;

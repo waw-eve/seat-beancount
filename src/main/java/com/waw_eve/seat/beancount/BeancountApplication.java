@@ -3,10 +3,12 @@ package com.waw_eve.seat.beancount;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,20 +96,30 @@ public class BeancountApplication {
 				}
 				do {
 					resp = api.seatApiHttpControllersApiv2CorporationControllerGetWalletJournal(entry.getValue(), page);
-					processData(entry.getKey(), resp.getData());
+					processData(dir, page, entry.getKey(), resp.getData());
 					page++;
 				} while (resp.getMeta().getLastPage() >= page);
 				Files.writeString(Path.of(indexCache.getAbsolutePath()), gson.toJson(page));
+				generateIndex(dir, page);
 			} catch (ApiException e) {
 				log.error("Get exception on calling api.", e);
 			} catch (IOException e) {
-				log.error("Get exception on create directory.", e);
+				log.error("Get exception on create directory or write data.", e);
 			}
 		}
 
 	}
 
-	private static void processData(String account, List<CorporationWalletJournal> data) {
+	private static void generateIndex(Path dir, int page) throws IOException {
+		StringBuilder indexStr = new StringBuilder();
+		for (int i = 1; i <= page; i++) {
+			indexStr.append("include \"page_" + i + ".bean\"\n");
+		}
+		Files.writeString(dir.resolve("index.bean"), indexStr.toString(), StandardOpenOption.CREATE,
+				StandardOpenOption.TRUNCATE_EXISTING);
+	}
+
+	private static void processData(Path dir, int page, String key, List<CorporationWalletJournal> data) {
 		// TODO Auto-generated method stub
 
 	}

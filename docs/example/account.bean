@@ -1,0 +1,3 @@
+include "MEOW.divisions.bean"
+include "TEST.divisions.bean"
+include "RefType.bean"

@@ -1,5 +1,6 @@
 package com.waw_eve.seat.beancount;
 
+import java.net.URL;
 import java.util.Map;
 
 import lombok.Data;
@@ -14,7 +15,7 @@ public class Config {
 	/**
 	 * Base path of the URL (e.g https://seat.waw-eve.com/api)
 	 */
-	private String baseUrl;
+	private URL baseUrl;
 
 	/**
 	 * Access token Generated on SeAT API Token Admin (e.g

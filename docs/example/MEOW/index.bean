@@ -1,0 +1,3 @@
+include "page_1.bean"
+include "page_2.bean"
+include "page_3.bean"

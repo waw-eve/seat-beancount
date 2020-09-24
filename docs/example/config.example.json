@@ -1,0 +1,9 @@
+{
+    "baseUrl": "https://seat.example.com/api",
+    "token": "aaaaaaaaaAAAAA1111100000asdfg5tg",
+    "corporationIdMap": {
+      "MEOW": 100002,
+      "TEST": 100001
+    },
+    "targetPath": "/app/docs/example"
+  }

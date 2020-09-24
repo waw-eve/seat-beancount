@@ -1,0 +1,8 @@
+2020-04-20 * "reason:null,description:Tester deposited cash into TEST's account"
+  Assest:TEST:7     20000000000 ISK
+  Assest:RefType:player_donation
+2020-04-20 balance Assets:TEST:7 24000000000.47 ISK
+2020-04-23 * "reason:null,description:Tester1 transferred cash from TEST's corporate account to TEST's account"
+  Assest:TEST:7     10000000000 ISK
+  Assest:RefType:corporation_account_withdrawal
+2020-04-23 balance Assets:TEST:7 34000000000.47 ISK

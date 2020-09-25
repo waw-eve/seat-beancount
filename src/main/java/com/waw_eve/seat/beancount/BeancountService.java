@@ -99,7 +99,7 @@ public class BeancountService {
 				ledge.append(" \"reason:" + journal.getReason() + "\"");
 			}
 			ledge.append("\n  ");
-			ledge.append(account + ":" + journal.getDivision());
+			ledge.append(account + ":Division" + journal.getDivision());
 			ledge.append("\t\t\t\t\t\t" + BigDecimal.valueOf(journal.getAmount()).toPlainString() + " ISK");
 			ledge.append("\n  ");
 			ledge.append("Assest:RefType:" + lineToHump(journal.getRefType()));

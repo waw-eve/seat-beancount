@@ -105,7 +105,7 @@ public class BeancountService {
 			ledge.append("Assest:RefType:" + lineToHump(journal.getRefType()));
 			ledge.append("\n");
 			ledge.append(formatter.format(journal.getDate()));
-			ledge.append(" balance " + account + ":" + journal.getDivision());
+			ledge.append(" balance " + account + ":Division" + journal.getDivision());
 			ledge.append("\t" + BigDecimal.valueOf(journal.getBalance()).toPlainString() + " ISK\n\n");
 		}
 		Files.writeString(beanFile, ledge.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);

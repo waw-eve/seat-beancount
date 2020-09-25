@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
 
 import com.google.gson.Gson;
@@ -46,6 +47,10 @@ public class BeancountService {
 
 	private int id;
 
+	private LocalDate lastBalanceDate;
+
+	private double lastBalance;
+
 	public static List<BeancountService> RunningServiceList = new LinkedList<>();
 
 	BeancountService(WalletApi api, Path dir, String account, int id) {
@@ -53,6 +58,7 @@ public class BeancountService {
 		this.dir = dir;
 		this.account = account;
 		this.id = id;
+		lastBalanceDate = LocalDate.MIN;
 	}
 
 	public void update() {
@@ -93,20 +99,25 @@ public class BeancountService {
 		StringBuilder ledge = new StringBuilder();
 		for (CorporationWalletJournal journal : data) {
 			String realAccount = "Assets:" + account + ":Division" + journal.getDivision();
-			ledge.append(formatter.format(journal.getDate()));
-			ledge.append(" * ");
-			ledge.append("\"" + journal.getDescription() + "\"");
-			if (journal.getReason() != null) {
+			if (journal.getDate().compareTo(lastBalanceDate) > 0 && lastBalanceDate != LocalDate.MIN) {
+				ledge.append(formatter.format(lastBalanceDate)).append(" balance " + realAccount)
+						.append("\t" + BigDecimal.valueOf(lastBalance).toPlainString() + " ISK\n\n");
+			}
+			ledge.append(formatter.format(journal.getDate())).append(" * ")
+					.append("\"" + journal.getDescription() + "\"");
+			if (journal.getReason() != null && !journal.getReason().isBlank()) {
 				ledge.append(" \"reason:" + journal.getReason() + "\"");
 			}
-			ledge.append("\n  " + realAccount);
-			ledge.append("\t\t\t\t\t\t" + BigDecimal.valueOf(journal.getAmount()).toPlainString() + " ISK");
-			ledge.append("\n  ");
-			ledge.append("Assets:RefType:" + lineToHump(journal.getRefType()));
 			ledge.append("\n");
-			ledge.append(formatter.format(journal.getDate()));
-			ledge.append(" balance " + realAccount);
-			ledge.append("\t" + BigDecimal.valueOf(journal.getBalance()).toPlainString() + " ISK\n\n");
+			ledge.append("  " + realAccount + "\t\t\t\t\t")
+					.append(BigDecimal.valueOf(journal.getAmount()).toPlainString() + " ISK");
+			ledge.append("\n");
+			ledge.append(journal.getAmount() > 0 ? "  Income" : "  Expenses")
+					.append(":RefType:" + lineToHump(journal.getRefType()) + "\t\t\t")
+					.append(BigDecimal.valueOf(-journal.getAmount()).toPlainString() + " ISK");
+			ledge.append("\n");
+			lastBalanceDate = journal.getDate();
+			lastBalance = journal.getBalance();
 		}
 		Files.writeString(beanFile, ledge.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 	}

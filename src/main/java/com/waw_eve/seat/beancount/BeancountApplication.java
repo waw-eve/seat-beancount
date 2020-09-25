@@ -9,6 +9,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +40,8 @@ public class BeancountApplication {
 	private static Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
 	private static Config config = null;
+
+	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
 	/**
 	 * @param args
@@ -96,7 +100,7 @@ public class BeancountApplication {
 				}
 				do {
 					resp = api.seatApiHttpControllersApiv2CorporationControllerGetWalletJournal(entry.getValue(), page);
-					processData(dir, page, entry.getKey(), resp.getData());
+					processData(dir.resolve("page_" + page + ".bean"), entry.getKey(), resp.getData());
 					page++;
 				} while (resp.getMeta().getLastPage() >= page);
 				Files.writeString(Path.of(indexCache.getAbsolutePath()), gson.toJson(page));
@@ -119,9 +123,27 @@ public class BeancountApplication {
 				StandardOpenOption.TRUNCATE_EXISTING);
 	}
 
-	private static void processData(Path dir, int page, String key, List<CorporationWalletJournal> data) {
-		// TODO Auto-generated method stub
-
+	private static void processData(Path beanFile, String account, List<CorporationWalletJournal> data)
+			throws IOException {
+		StringBuilder ledge = new StringBuilder();
+		for (CorporationWalletJournal journal : data) {
+			ledge.append(dateFormat.format(journal.getDate()));
+			ledge.append(" * ");
+			ledge.append("\"" + journal.getDescription() + "\"");
+			if (journal.getReason() != null) {
+				ledge.append(" \"reason:" + journal.getReason() + "\"");
+			}
+			ledge.append("\n  ");
+			ledge.append(account + ":" + journal.getDivision());
+			ledge.append("\t\t\t\t\t\t" + journal.getAmount() + " ISK");
+			ledge.append("\n  ");
+			ledge.append("Assest:RefType:" + journal.getRefType());
+			ledge.append("\n");
+			ledge.append(dateFormat.format(journal.getDate()));
+			ledge.append(" balance " + account + ":" + journal.getDivision());
+			ledge.append("\t" + journal.getBalance() + " ISK\n\n");
+		}
+		Files.writeString(beanFile, ledge.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 	}
 
 }

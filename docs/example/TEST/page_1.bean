@@ -1,15 +1,15 @@
 2020-03-16 * "Tester transferred cash from Test1's corporate account to TEST's account" "reason:new corp"
-  Assest:TEST:1     21000000000 ISK
+  Assest:TEST:1						21000000000 ISK
   Assest:RefType:corporation_account_withdrawal
-2020-03-16 balance Assets:TEST:1 21000000000 ISK
+2020-03-16 balance Assets:TEST:1	21000000000 ISK
 
 2020-03-16 * "Market escrow release"
-  Assest:TEST:1     -450000 ISK
+  Assest:TEST:1						-450000 ISK
   Assest:RefType:market_escrow
-2020-03-16 balance Assets:TEST:1 20999550000 ISK
+2020-03-16 balance Assets:TEST:1	20999550000 ISK
 
 2020-03-16 * "Market escrow release"
-  Assest:TEST:1     -735700 ISK
+  Assest:TEST:1						-735700 ISK
   Assest:RefType:market_escrow
-2020-03-16 balance Assets:TEST:1 20998814300 ISK
+2020-03-16 balance Assets:TEST:1	20998814300 ISK
 

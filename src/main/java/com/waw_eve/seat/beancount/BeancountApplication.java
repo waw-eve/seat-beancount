@@ -86,7 +86,8 @@ public class BeancountApplication {
 			}
 			Path refType = targetPath.resolve("RefType.bean");
 			if (Files.notExists(refType)) {
-				Files.copy(BeancountApplication.class.getResourceAsStream("RefType.bean"), refType);
+				log.debug(BeancountApplication.class.getResource("resources/RefType.bean").toString());
+				Files.copy(BeancountApplication.class.getResourceAsStream("resources/RefType.bean"), refType);
 			}
 		} catch (Exception e) {
 			log.error("Cannot create target path and refType file.", e);

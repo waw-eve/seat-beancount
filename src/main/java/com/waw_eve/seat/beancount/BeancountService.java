@@ -92,7 +92,7 @@ public class BeancountService {
 	private void processData(Path beanFile, List<CorporationWalletJournal> data) throws IOException {
 		StringBuilder ledge = new StringBuilder();
 		for (CorporationWalletJournal journal : data) {
-			String realAccount = "Assest:" + account + ":Division" + journal.getDivision();
+			String realAccount = "Assets:" + account + ":Division" + journal.getDivision();
 			ledge.append(formatter.format(journal.getDate()));
 			ledge.append(" * ");
 			ledge.append("\"" + journal.getDescription() + "\"");
@@ -102,7 +102,7 @@ public class BeancountService {
 			ledge.append("\n  " + realAccount);
 			ledge.append("\t\t\t\t\t\t" + BigDecimal.valueOf(journal.getAmount()).toPlainString() + " ISK");
 			ledge.append("\n  ");
-			ledge.append("Assest:RefType:" + lineToHump(journal.getRefType()));
+			ledge.append("Assets:RefType:" + lineToHump(journal.getRefType()));
 			ledge.append("\n");
 			ledge.append(formatter.format(journal.getDate()));
 			ledge.append(" balance " + realAccount);

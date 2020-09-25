@@ -110,7 +110,9 @@ public class BeancountService {
 		}
 		Files.writeString(beanFile, ledge.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 	}
+
 	private static Pattern linePattern = Pattern.compile("_(\\w)");
+
 	private static String lineToHump(String str) {
 		str = str.toLowerCase();
 		Matcher matcher = linePattern.matcher(str);
@@ -119,7 +121,7 @@ public class BeancountService {
 			matcher.appendReplacement(sb, matcher.group(1).toUpperCase());
 		}
 		matcher.appendTail(sb);
-		return (sb.substring(0,1).toUpperCase()+sb.substring(1)).toString();
+		return (sb.substring(0, 1).toUpperCase() + sb.substring(1)).toString();
 	}
 
 }

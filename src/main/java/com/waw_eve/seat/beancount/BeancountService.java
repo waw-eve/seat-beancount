@@ -13,6 +13,7 @@ import org.threeten.bp.format.DateTimeFormatter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.LongSerializationPolicy;
 import com.waw_eve.seat.client.WalletApi;
 import com.waw_eve.seat.client.invoker.ApiException;
 import com.waw_eve.seat.client.model.CorporationWalletJournal;
@@ -27,7 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BeancountService {
 
-	private static Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+	private static Gson gson = new GsonBuilder().serializeNulls()
+			.setLongSerializationPolicy(LongSerializationPolicy.STRING).setPrettyPrinting().create();
 
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -51,6 +53,7 @@ public class BeancountService {
 	}
 
 	public void update() {
+		log.info("Updating " + account + " start with page " + page);
 		InlineResponse20026 resp;
 		File indexCache = dir.resolve(".index_cache").toFile();
 		try {
@@ -60,6 +63,7 @@ public class BeancountService {
 			}
 			do {
 				resp = api.seatApiHttpControllersApiv2CorporationControllerGetWalletJournal(id, page);
+				log.info("process data of " + account + " page " + page);
 				processData(dir.resolve("page_" + page + ".bean"), resp.getData());
 				page++;
 			} while (resp.getMeta().getLastPage() >= page);
@@ -70,6 +74,7 @@ public class BeancountService {
 		} catch (IOException e) {
 			log.error("Get exception on create directory or write data.", e);
 		}
+		log.info("Update "+ account+" done.");
 	}
 
 	private void generateIndex() throws IOException {

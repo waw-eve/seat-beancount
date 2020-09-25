@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.LongSerializationPolicy;
 import com.waw_eve.seat.client.WalletApi;
 import com.waw_eve.seat.client.invoker.ApiClient;
 import com.waw_eve.seat.client.invoker.Configuration;
@@ -40,7 +42,8 @@ public class BeancountApplication {
 
 	private static ApiClient apiClient = Configuration.getDefaultApiClient();
 
-	private static Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+	private static Gson gson = new GsonBuilder().serializeNulls()
+			.setLongSerializationPolicy(LongSerializationPolicy.STRING).setPrettyPrinting().create();
 
 	private static Config config = null;
 
@@ -97,6 +100,10 @@ public class BeancountApplication {
 		Map<String, Integer> corporationIdMap = config.getCorporationIdMap();
 
 		for (Map.Entry<String, Integer> entry : corporationIdMap.entrySet()) {
+			Path divisions = targetPath.resolve(entry.getKey() + ".divisions.bean");
+			if (Files.notExists(divisions)) {
+				generateDivisions(divisions, entry.getKey());
+			}
 			Path dir = targetPath.resolve(entry.getKey());
 			BeancountService bs = new BeancountService(api, dir, entry.getKey(), entry.getValue());
 			BeancountService.RunningServiceList.add(bs);
@@ -121,6 +128,21 @@ public class BeancountApplication {
 				bs.update();
 			}
 		}
+	}
+
+	private void generateDivisions(Path divisions, String account) {
+
+		StringBuilder division = new StringBuilder();
+		for (int i = 1; i <= 7; i++) {
+			division.append("1970-01-01 open " + account + ":" + i + " ISK\n");
+		}
+		try {
+			Files.writeString(divisions, division.toString(), StandardOpenOption.CREATE,
+					StandardOpenOption.TRUNCATE_EXISTING);
+		} catch (IOException e) {
+			log.error("Get exception on generate accounts.", e);
+		}
+
 	}
 
 }

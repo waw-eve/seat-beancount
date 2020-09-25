@@ -59,7 +59,7 @@
 		<junit-version>4.13</junit-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jib.version>2.5.2</jib.version>
-		<docker.image.name>alliancewaw/beancount</docker.image.name>
+		<docker.image.name>alliancewaw/seat-beancount</docker.image.name>
 	</properties>
 
 	<dependencies>

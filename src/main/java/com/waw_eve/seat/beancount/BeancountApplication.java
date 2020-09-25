@@ -71,17 +71,24 @@ public class BeancountApplication {
 				log.error("Cannot create config file " + configFile + "\nPlease check config file.", e1);
 			}
 		}
+		new BeancountApplication().run();
+
+	}
+
+	public void run() {
 		apiClient.setApiKey(config.getToken());
 		apiClient.setBasePath(config.getBaseUrl().toString());
 
 		Path targetPath = Path.of(config.getTargetPath());
 		try {
-			Files.createDirectory(targetPath);
-			File refType = targetPath.resolve("RefType.bean").toFile();
-			if (!refType.exists()) {
-				Files.copy(BeancountApplication.class.getResourceAsStream("RefType.bean"), refType.toPath());
+			if (Files.notExists(targetPath)) {
+				Files.createDirectory(targetPath);
 			}
-		} catch (IOException e) {
+			Path refType = targetPath.resolve("RefType.bean");
+			if (Files.notExists(refType)) {
+				Files.copy(BeancountApplication.class.getResourceAsStream("RefType.bean"), refType);
+			}
+		} catch (Exception e) {
 			log.error("Cannot create target path and refType file.", e);
 		}
 
@@ -114,7 +121,6 @@ public class BeancountApplication {
 				bs.update();
 			}
 		}
-
 	}
 
 }

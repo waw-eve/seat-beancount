@@ -99,7 +99,7 @@ public class BeancountService {
 			ledge.append(account + ":" + journal.getDivision());
 			ledge.append("\t\t\t\t\t\t" + journal.getAmount() + " ISK");
 			ledge.append("\n  ");
-			ledge.append("Assest:RefType:" + journal.getRefType());
+			ledge.append("Assest:RefType:" + journal.getRefType().toUpperCase());
 			ledge.append("\n");
 			ledge.append(formatter.format(journal.getDate()));
 			ledge.append(" balance " + account + ":" + journal.getDivision());

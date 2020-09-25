@@ -3,6 +3,7 @@ package com.waw_eve.seat.beancount;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -74,7 +75,7 @@ public class BeancountService {
 		} catch (IOException e) {
 			log.error("Get exception on create directory or write data.", e);
 		}
-		log.info("Update "+ account+" done.");
+		log.info("Update " + account + " done.");
 	}
 
 	private void generateIndex() throws IOException {
@@ -97,13 +98,13 @@ public class BeancountService {
 			}
 			ledge.append("\n  ");
 			ledge.append(account + ":" + journal.getDivision());
-			ledge.append("\t\t\t\t\t\t" + journal.getAmount() + " ISK");
+			ledge.append("\t\t\t\t\t\t" + BigDecimal.valueOf(journal.getAmount()).toPlainString() + " ISK");
 			ledge.append("\n  ");
 			ledge.append("Assest:RefType:" + journal.getRefType().toUpperCase());
 			ledge.append("\n");
 			ledge.append(formatter.format(journal.getDate()));
 			ledge.append(" balance " + account + ":" + journal.getDivision());
-			ledge.append("\t" + journal.getBalance() + " ISK\n\n");
+			ledge.append("\t" + BigDecimal.valueOf(journal.getBalance()).toPlainString() + " ISK\n\n");
 		}
 		Files.writeString(beanFile, ledge.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 	}

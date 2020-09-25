@@ -38,4 +38,14 @@ public class Config {
 	 * Target location of the generated result
 	 */
 	private String targetPath;
+	
+	/**
+	 * If set this true, the application will auto update beancount files.
+	 */
+	private boolean isDaemon;
+	
+	/**
+	 * If isDaemon=true, Quartz will use this repeat interval(minutes).
+	 */
+	private int quartzRepeatInterval;
 }

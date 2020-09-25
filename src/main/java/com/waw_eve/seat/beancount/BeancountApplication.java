@@ -3,17 +3,23 @@ package com.waw_eve.seat.beancount;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import org.quartz.CronTrigger;
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
+import org.quartz.Trigger;
+import org.quartz.impl.StdSchedulerFactory;
+import static org.quartz.TriggerBuilder.*;
+import static org.quartz.SimpleScheduleBuilder.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,10 +27,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.waw_eve.seat.client.WalletApi;
 import com.waw_eve.seat.client.invoker.ApiClient;
-import com.waw_eve.seat.client.invoker.ApiException;
 import com.waw_eve.seat.client.invoker.Configuration;
-import com.waw_eve.seat.client.model.CorporationWalletJournal;
-import com.waw_eve.seat.client.model.InlineResponse20026;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,8 +43,6 @@ public class BeancountApplication {
 	private static Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
 	private static Config config = null;
-
-	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
 	/**
 	 * @param args arg[0] should be config file
@@ -61,7 +62,7 @@ public class BeancountApplication {
 				Config example = new Config();
 				example.setBaseUrl(new URL("https://seat.example.com/api"));
 				example.setToken("aaaaaaaaaAAAAA1111100000asdfg5tg");
-				example.setTargetPath(new File("generated").getAbsolutePath());
+				example.setTargetPath(new File("data").getAbsolutePath());
 				example.setCorporationIdMap(new HashMap<>());
 				example.getCorporationIdMap().put("TEST", 100001);
 				example.getCorporationIdMap().put("MEOW", 100002);
@@ -70,7 +71,7 @@ public class BeancountApplication {
 				log.error("Cannot create config file " + configFile + "\nPlease check config file.", e1);
 			}
 		}
-		apiClient.setAccessToken(config.getToken());
+		apiClient.setApiKey(config.getToken());
 		apiClient.setBasePath(config.getBaseUrl().toString());
 
 		Path targetPath = Path.of(config.getTargetPath());
@@ -89,61 +90,31 @@ public class BeancountApplication {
 		Map<String, Integer> corporationIdMap = config.getCorporationIdMap();
 
 		for (Map.Entry<String, Integer> entry : corporationIdMap.entrySet()) {
-			int page = 1;
-			InlineResponse20026 resp;
 			Path dir = targetPath.resolve(entry.getKey());
-			File indexCache = dir.resolve(".index_cache").toFile();
+			BeancountService bs = new BeancountService(api, dir, entry.getKey(), entry.getValue());
+			BeancountService.RunningServiceList.add(bs);
+		}
+
+		if (config.isDaemon()) {
+			SchedulerFactory sf = new StdSchedulerFactory();
 			try {
-				Files.createDirectories(dir);
-				if (indexCache.exists()) {
-					page = gson.fromJson(new FileReader(indexCache), Integer.class);
-				}
-				do {
-					resp = api.seatApiHttpControllersApiv2CorporationControllerGetWalletJournal(entry.getValue(), page);
-					processData(dir.resolve("page_" + page + ".bean"), entry.getKey(), resp.getData());
-					page++;
-				} while (resp.getMeta().getLastPage() >= page);
-				Files.writeString(Path.of(indexCache.getAbsolutePath()), gson.toJson(page));
-				generateIndex(dir, page);
-			} catch (ApiException e) {
-				log.error("Get exception on calling api.", e);
-			} catch (IOException e) {
-				log.error("Get exception on create directory or write data.", e);
+				Scheduler scheduler = sf.getScheduler();
+				JobDetail updateJob = JobBuilder.newJob(UpdateJob.class).withIdentity("updateJob", "default").build();
+				Trigger trigger = newTrigger()
+						.withIdentity("updateTrigger", "default").withSchedule(simpleSchedule()
+								.withIntervalInMinutes(config.getQuartzRepeatInterval()).repeatForever())
+						.forJob(updateJob).build();
+				scheduler.scheduleJob(updateJob, trigger);
+				scheduler.start();
+			} catch (SchedulerException e) {
+				log.error("Get exception on schedule jobs.", e);
+			}
+		} else {
+			for (BeancountService bs : BeancountService.RunningServiceList) {
+				bs.update();
 			}
 		}
 
-	}
-
-	private static void generateIndex(Path dir, int page) throws IOException {
-		StringBuilder indexStr = new StringBuilder();
-		for (int i = 1; i <= page; i++) {
-			indexStr.append("include \"page_" + i + ".bean\"\n");
-		}
-		Files.writeString(dir.resolve("index.bean"), indexStr.toString(), StandardOpenOption.CREATE,
-				StandardOpenOption.TRUNCATE_EXISTING);
-	}
-
-	private static void processData(Path beanFile, String account, List<CorporationWalletJournal> data)
-			throws IOException {
-		StringBuilder ledge = new StringBuilder();
-		for (CorporationWalletJournal journal : data) {
-			ledge.append(dateFormat.format(journal.getDate()));
-			ledge.append(" * ");
-			ledge.append("\"" + journal.getDescription() + "\"");
-			if (journal.getReason() != null) {
-				ledge.append(" \"reason:" + journal.getReason() + "\"");
-			}
-			ledge.append("\n  ");
-			ledge.append(account + ":" + journal.getDivision());
-			ledge.append("\t\t\t\t\t\t" + journal.getAmount() + " ISK");
-			ledge.append("\n  ");
-			ledge.append("Assest:RefType:" + journal.getRefType());
-			ledge.append("\n");
-			ledge.append(dateFormat.format(journal.getDate()));
-			ledge.append(" balance " + account + ":" + journal.getDivision());
-			ledge.append("\t" + journal.getBalance() + " ISK\n\n");
-		}
-		Files.writeString(beanFile, ledge.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 	}
 
 }

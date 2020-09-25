@@ -134,7 +134,7 @@ public class BeancountApplication {
 
 		StringBuilder division = new StringBuilder();
 		for (int i = 1; i <= 7; i++) {
-			division.append("1970-01-01 open " + account + ":Division" + i + " ISK\n");
+			division.append("1970-01-01 open Assest:" + account + ":Division" + i + " ISK\n");
 		}
 		try {
 			Files.writeString(divisions, division.toString(), StandardOpenOption.CREATE,

@@ -5,5 +5,7 @@
       "MEOW": 100002,
       "TEST": 100001
     },
-    "targetPath": "/app/docs/example"
+    "targetPath": "/app/docs/example",
+    "isDaemon": false,
+    "quartzRepeatInterval": 0
   }

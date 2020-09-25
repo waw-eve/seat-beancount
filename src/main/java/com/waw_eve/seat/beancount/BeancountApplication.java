@@ -29,7 +29,7 @@ import com.waw_eve.seat.client.model.InlineResponse20026;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author KagurazakaNyaa <i@kagurazakanyaa.com>
+ * @author KagurazakaNyaa
  *
  */
 @Slf4j
@@ -44,7 +44,7 @@ public class BeancountApplication {
 	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
 	/**
-	 * @param args
+	 * @param args arg[0] should be config file
 	 */
 	public static void main(String[] args) {
 		String configFile = "config.json";

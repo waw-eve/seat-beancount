@@ -6,7 +6,7 @@ import java.util.Map;
 import lombok.Data;
 
 /**
- * @author KagurazakaNyaa <i@kagurazakanyaa.com>
+ * @author KagurazakaNyaa
  *
  */
 @Data

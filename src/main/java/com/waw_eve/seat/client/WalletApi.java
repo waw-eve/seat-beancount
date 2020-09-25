@@ -48,12 +48,12 @@ public class WalletApi {
 		this.apiClient = apiClient;
 	}
 
-
 	/**
 	 * Build call for
 	 * seatApiHttpControllersApiv2CorporationControllerGetWalletJournal
 	 * 
 	 * @param corporationId           Corporation id (required)
+	 * @param page                    Page number
 	 * @param progressListener        Progress listener
 	 * @param progressRequestListener Progress request listener
 	 * @return Call to execute

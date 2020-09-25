@@ -15,7 +15,7 @@ package com.waw_eve.seat.client.model;
 import java.io.IOException;
 import java.util.Objects;
 
-import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.LocalDate;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -38,7 +38,7 @@ public class CorporationWalletJournal {
 	private Integer division = null;
 
 	@SerializedName("date")
-	private OffsetDateTime date = null;
+	private LocalDate date = null;
 
 	@SerializedName("ref_type")
 	private String refType = null;
@@ -159,7 +159,7 @@ public class CorporationWalletJournal {
 		this.division = division;
 	}
 
-	public CorporationWalletJournal date(OffsetDateTime date) {
+	public CorporationWalletJournal date(LocalDate date) {
 		this.date = date;
 		return this;
 	}
@@ -170,11 +170,11 @@ public class CorporationWalletJournal {
 	 * @return date
 	 **/
 	@Schema(description = "Date and time of transaction")
-	public OffsetDateTime getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(OffsetDateTime date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

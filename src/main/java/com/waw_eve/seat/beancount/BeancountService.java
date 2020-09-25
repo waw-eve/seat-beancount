@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.threeten.bp.format.DateTimeFormatter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,7 +29,7 @@ public class BeancountService {
 
 	private static Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-	private DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 	private WalletApi api;
 
@@ -84,7 +84,7 @@ public class BeancountService {
 	private void processData(Path beanFile, List<CorporationWalletJournal> data) throws IOException {
 		StringBuilder ledge = new StringBuilder();
 		for (CorporationWalletJournal journal : data) {
-			ledge.append(dateFormat.format(journal.getDate()));
+			ledge.append(formatter.format(journal.getDate()));
 			ledge.append(" * ");
 			ledge.append("\"" + journal.getDescription() + "\"");
 			if (journal.getReason() != null) {
@@ -96,7 +96,7 @@ public class BeancountService {
 			ledge.append("\n  ");
 			ledge.append("Assest:RefType:" + journal.getRefType());
 			ledge.append("\n");
-			ledge.append(dateFormat.format(journal.getDate()));
+			ledge.append(formatter.format(journal.getDate()));
 			ledge.append(" balance " + account + ":" + journal.getDivision());
 			ledge.append("\t" + journal.getBalance() + " ISK\n\n");
 		}

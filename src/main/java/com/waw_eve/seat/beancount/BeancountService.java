@@ -51,7 +51,7 @@ public class BeancountService {
 
 	private double lastBalance;
 
-	public static List<BeancountService> RunningServiceList = new LinkedList<>();
+	static final List<BeancountService> RunningServiceList = new LinkedList<>();
 
 	BeancountService(WalletApi api, Path dir, String account, int id) {
 		this.api = api;
@@ -62,7 +62,6 @@ public class BeancountService {
 	}
 
 	public void update() {
-		log.info("Updating " + account + " start with page " + page);
 		InlineResponse20026 resp;
 		File indexCache = dir.resolve(".index_cache").toFile();
 		try {
@@ -70,18 +69,31 @@ public class BeancountService {
 			if (indexCache.exists()) {
 				page = gson.fromJson(new FileReader(indexCache), Integer.class);
 			}
+			log.info("Updating " + account + " start with page " + page);
+		} catch (IOException e) {
+			log.error("Get exception on create directory.", e);
+		}
+		try {
 			do {
 				resp = api.seatApiHttpControllersApiv2CorporationControllerGetWalletJournal(id, page);
+				if (resp.getData().isEmpty()) {
+					break;
+				}
 				log.info("process data of " + account + " page " + page);
 				processData(dir.resolve("page_" + page + ".bean"), resp.getData());
 				page++;
 			} while (resp.getMeta().getLastPage() >= page);
-			Files.writeString(Path.of(indexCache.getAbsolutePath()), gson.toJson(page));
-			generateIndex();
 		} catch (ApiException e) {
 			log.error("Get exception on calling api.", e);
 		} catch (IOException e) {
-			log.error("Get exception on create directory or write data.", e);
+			log.error("Get exception on write data.", e);
+		}
+		page--;
+		try {
+			Files.writeString(Path.of(indexCache.getAbsolutePath()), gson.toJson(page));
+			generateIndex();
+		} catch (IOException e) {
+			log.error("Get exception on write data.", e);
 		}
 		log.info("Update " + account + " done.");
 	}

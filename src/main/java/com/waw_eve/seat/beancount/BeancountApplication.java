@@ -136,6 +136,9 @@ public class BeancountApplication {
 		for (int i = 1; i <= 7; i++) {
 			division.append("1970-01-01 open Assets:" + account + ":Division" + i + " ISK\n");
 		}
+		for (int i = 1; i <= 7; i++) {
+			division.append("1970-01-01 balance Assets:" + account + ":Division" + i + " 0 ISK\n");
+		}
 		try {
 			Files.writeString(divisions, division.toString(), StandardOpenOption.CREATE,
 					StandardOpenOption.TRUNCATE_EXISTING);
